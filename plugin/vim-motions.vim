@@ -9,4 +9,4 @@ endfunction
 
 " nnoremap <unique> <script> <Plug>ForwardMotions <SID>GetHitsForward
 nnoremap <script> <Plug>ForwardMotions <SID>GetHitsForward
-nnoremap <SID>GetHitsForward :call <SID>GetHits(getchar(), 'f')
+nnoremap <SID>GetHitsForward :call <SID>GetHits(getchar(), 'f')<CR>
