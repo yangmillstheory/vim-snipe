@@ -2,7 +2,7 @@ let s:forward_motions = {'f': 1, 't': 1}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 " let s:jump_tokens = 'abc'
 
-function! s:GetHitCounts(hits_rem)
+function! s:GetHitCounts(hits_rem) " {{{
   " returns a list corresponding to s:jump_tokens; each
   " count represents how many hits are in the subtree
   " rooted at the corresponding jump token
@@ -30,8 +30,48 @@ function! s:GetHitCounts(hits_rem)
 
   return reverse(n_hits)
 endfunction
+" }}}
 
-function! s:GetJumpTree(hits)
+function! s:CreateCoordKeyDict(groups, ...) " {{{
+  " Dict structure:
+  " 1,2 : a
+  " 2,3 : b
+  let coord_keys = {}
+  let sort_list = []
+  let group_key = a:0 == 1 ? a:1 : ''
+
+  for [key, item] in items(a:groups)
+    let key = ( ! empty(group_key) ? group_key : key)
+
+    if type(item) == 3
+      " Destination coords
+
+      " The key needs to be zero-padded in order to
+      " sort correctly
+      let dict_key = printf('%05d,%05d', item[0], item[1])
+      let coord_keys[dict_key] = key
+
+      " We need a sorting list to loop correctly in
+      " PromptUser, dicts are unsorted
+      call add(sort_list, dict_key)
+    else
+      " Item is a dict (has children)
+      let coord_key_dict = s:CreateCoordKeyDict(item, key)
+
+      " Make sure to extend both the sort list and the
+      " coord key dict
+      call extend(sort_list, coord_key_dict[0])
+      call extend(coord_keys, coord_key_dict[1])
+    endif
+
+    unlet item
+  endfor
+
+  return [sort_list, coord_keys]
+endfunction
+" }}}
+
+function! s:GetJumpTree(hits) " {{{
   " returns a tree where non-leaf nodes are jump tokens and leaves are coordinates
   " (tuples) of hits.
   "
@@ -57,15 +97,22 @@ function! s:GetJumpTree(hits)
   endfor
   return tree
 endfunction
+" }}}
 
-function! s:GetJumpCoordinates(jump_tree)
+function! GetJumpPos(jump_tree) " {{{
   let first_lvl = values(a:jump_tree)
   if len(first_lvl) == 1
     return first_lvl[0]
   endif
 endfunction
+" }}}
 
-function! s:GetHits(char, motion)
+function! GetNextJumpToken(jump_tree) " {{{
+
+endfunction
+" }}}
+
+function! s:GetHits(char, motion) " {{{
   let hits = []
   let flags = ''
   if !has_key(s:forward_motions, a:motion)
@@ -88,8 +135,9 @@ function! s:GetHits(char, motion)
   endwhile
   return hits
 endfunction
+" }}}
 
-function! s:DoMotion(ord, motion)
+function! s:DoMotion(ord, motion) " {{{
   if a:ord == 27
     " escape key pressed
     return
@@ -98,12 +146,16 @@ function! s:DoMotion(ord, motion)
   let char = nr2char(a:ord)
   let hits = s:GetHits(char, a:motion)
   let tree = s:GetJumpTree(hits)
+  let jump_pos = s:GetJumpPos(tree)
   echom string(hits)
   echom string(tree)
 endfunction
+" }}}
 
 " nnoremap <unique> <script> <Plug>ForwardMotions <SID>GetHitsForward
 nnoremap <script> <Plug>ForwardMotion <SID>DoMotionForward
 nnoremap <script> <Plug>ReverseMotion <SID>DoMotionReverse
 nnoremap <SID>DoMotionForward :call <SID>DoMotion(getchar(), 'f')<CR>
 nnoremap <SID>DoMotionReverse :call <SID>DoMotion(getchar(), 'F')<CR>
+
+" vim: fdm=marker
