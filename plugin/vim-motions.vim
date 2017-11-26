@@ -2,7 +2,7 @@ let s:forward_motions = {'f': 1, 't': 1}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 " let s:jump_tokens = 'abc'
 
-function! s:get_hit_counts(hits_rem)
+function! s:GetHitCounts(hits_rem)
   " returns a list corresponding to s:jump_tokens; each
   " count represents how many hits are in the subtree
   " rooted at the corresponding jump token
@@ -36,14 +36,14 @@ function! s:GetJumpTree(hits)
   " (tuples) of hits.
   "
   " each level of the tree is filled such that the average path depth of the tree
-  " is minimized and the closest hits come first.
+  " is minimized and the closest hits come first first.
   let tree = {}
 
   " i: index into hits
-  " j: index into hits
+  " j: index into jump tokens
   let i = 0
   let j = 0
-  for n_children in s:get_hit_counts(len(a:hits))
+  for n_children in s:GetHitCounts(len(a:hits))
     let node = s:jump_tokens[j]
     if n_children == 1
       let tree[node] = a:hits[i]
