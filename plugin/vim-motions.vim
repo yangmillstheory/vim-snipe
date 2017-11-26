@@ -1,6 +1,6 @@
 let s:forward_motions = {'f': 1, 't': 1}
-let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
-" let s:jump_tokens = 'abc'
+" let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
+let s:jump_tokens = 'abc'
 
 function! s:GetHitCounts(hits_rem) " {{{
   " returns a list corresponding to s:jump_tokens; each
@@ -32,42 +32,20 @@ function! s:GetHitCounts(hits_rem) " {{{
 endfunction
 " }}}
 
-function! s:CreateCoordKeyDict(groups, ...) " {{{
-  " Dict structure:
-  " 1,2 : a
-  " 2,3 : b
-  let coord_keys = {}
-  let sort_list = []
-  let group_key = a:0 == 1 ? a:1 : ''
+function! s:GetJumpPosByJumpKeys(jump_tree, ...) " {{{
+  let dict = {}
+  let prev_key = a:0 == 1 ? a:1 : ''
 
-  for [key, item] in items(a:groups)
-    let key = ( ! empty(group_key) ? group_key : key)
-
-    if type(item) == 3
-      " Destination coords
-
-      " The key needs to be zero-padded in order to
-      " sort correctly
-      let dict_key = printf('%05d,%05d', item[0], item[1])
-      let coord_keys[dict_key] = key
-
-      " We need a sorting list to loop correctly in
-      " PromptUser, dicts are unsorted
-      call add(sort_list, dict_key)
+  for [jump_key, node] in items(a:jump_tree)
+    let next_key = prev_key . jump_key
+    if type(node) == v:t_list
+      let dict[next_key] = node
     else
-      " Item is a dict (has children)
-      let coord_key_dict = s:CreateCoordKeyDict(item, key)
-
-      " Make sure to extend both the sort list and the
-      " coord key dict
-      call extend(sort_list, coord_key_dict[0])
-      call extend(coord_keys, coord_key_dict[1])
+      call extend(dict, s:GetJumpPosByJumpKeys(node, next_key))
     endif
-
-    unlet item
   endfor
 
-  return [sort_list, coord_keys]
+  return dict
 endfunction
 " }}}
 
@@ -146,9 +124,10 @@ function! s:DoMotion(ord, motion) " {{{
   let char = nr2char(a:ord)
   let hits = s:GetHits(char, a:motion)
   let tree = s:GetJumpTree(hits)
-  let jump_pos = s:GetJumpPos(tree)
+  " let jump_pos = s:GetJumpPos(tree)
   echom string(hits)
   echom string(tree)
+  echom string(s:GetJumpPosByJumpKeys(tree))
 endfunction
 " }}}
 
