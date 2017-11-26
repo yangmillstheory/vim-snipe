@@ -1,5 +1,6 @@
 let s:forward_motions = {'f': 1, 't': 1}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
+" let s:jump_tokens = 'abc'
 
 function! s:get_hit_counts(hits_rem)
   " returns a list corresponding to s:jump_tokens; each
@@ -9,13 +10,13 @@ function! s:get_hit_counts(hits_rem)
   let n_hits = repeat([0], n_jump_tokens)
   let hits_rem = a:hits_rem
 
-  let is_first_level = 1
+  let is_first_lvl = 1
   while hits_rem > 0
-    " if we can't fit all the hits in the first level,
+    " if we can't fit all the hits in the first lvl,
     " fit the remainder starting from the last jump token
-    let n_children = is_first_level
+    let n_children = is_first_lvl
           \ ? 1
-          \ : len(n_jump_tokens) - 1
+          \ : n_jump_tokens - 1
     for j in range(n_jump_tokens)
       let n_hits[j] += n_children
       let hits_rem -= n_children
@@ -24,37 +25,44 @@ function! s:get_hit_counts(hits_rem)
         break
       endif
     endfor
-    let is_first_level = 0
+    let is_first_lvl = 0
   endwhile
 
   return reverse(n_hits)
 endfunction
 
-function! s:GetJumpTokenTree(hits)
+function! s:GetJumpTree(hits)
+  " returns a tree where non-leaf nodes are jump tokens and leaves are coordinates
+  " (tuples) of hits.
+  "
+  " each level of the tree is filled such that the average path depth of the tree
+  " is minimized and the closest hits come first.
   let tree = {}
 
   " i: index into hits
   " j: index into hits
   let i = 0
   let j = 0
-  for y_count in s:get_hit_counts(len(a:hits))
+  for n_children in s:get_hit_counts(len(a:hits))
     let node = s:jump_tokens[j]
-    if y_count == 1
+    if n_children == 1
       let tree[node] = a:hits[i]
-    elseif y_count > 1
-      let tree[node] = s:MyFunc(a:hits[i:i + y_count - 1])
+    elseif n_children > 1
+      let tree[node] = s:GetJumpTree(a:hits[i:i + n_children - 1])
     else
       continue
     endif
     let j += 1
-    let i += y_count
+    let i += n_children
   endfor
-
   return tree
 endfunction
 
-function! s:PromptUser()
-  " code
+function! s:GetJumpCoordinates(jump_tree)
+  let first_lvl = values(a:jump_tree)
+  if len(first_lvl) == 1
+    return first_lvl[0]
+  endif
 endfunction
 
 function! s:GetHits(char, motion)
@@ -89,8 +97,8 @@ function! s:DoMotion(ord, motion)
   let orig = [line('.'), col('.')]
   let char = nr2char(a:ord)
   let hits = s:GetHits(char, a:motion)
+  let tree = s:GetJumpTree(hits)
   echom string(hits)
-  let tree = s:GetJumpTokenTree(hits)
   echom string(tree)
 endfunction
 
