@@ -225,10 +225,13 @@ function! s:GetWordHits(motion) " {{{
     let curpos = getcurpos()
     let lnum = curpos[1]
     let cnum = curpos[2]
-    if lnum != orig_curpos[1] || curpos == endpos
+    if lnum != orig_curpos[1]
       break
     endif
     call add(hits, cnum)
+    if curpos[:-2] == endpos[:-2]
+      break
+    endif
   endwhile
   call setpos('.', orig_curpos)
   return hits
