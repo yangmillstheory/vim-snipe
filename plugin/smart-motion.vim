@@ -3,9 +3,9 @@ let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 
 " highlighting; TODO: pull out of this file {{{
 let s:hl1_group_colors = {
-    \   'gui'     : ['NONE', '#ff0000' , 'bold']
-    \ , 'cterm256': ['NONE', '11'      , 'bold']
-    \ , 'cterm'   : ['NONE', 'yellow'  , 'bold']
+    \   'gui'     : ['NONE', '#fabd2f' , 'bold,underline']
+    \ , 'cterm256': ['NONE', '7'       , 'bold']
+    \ , 'cterm'   : ['NONE', '7'       , 'bold']
     \ }
 let g:smart_motion_hl1_group = 'SmartMotionHL1'
 
@@ -215,6 +215,6 @@ endfunction
 
 nnoremap <script> <Plug>ForwardMotion <SID>DoMotionForward
 nnoremap <script> <Plug>ReverseMotion <SID>DoMotionReverse
-nnoremap <SID>DoMotionForward :call <SID>DoMotion(getchar(), 'f')<CR>
 nnoremap <SID>DoMotionReverse :call <SID>DoMotion(getchar(), 'F')<CR>
+nnoremap <SID>DoMotionForward :call <SID>DoMotion(getchar(), 'f')<CR>
 " vim: fdm=marker
