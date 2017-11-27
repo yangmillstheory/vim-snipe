@@ -250,8 +250,10 @@ function! core#DoWordMotion(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoSwap()
-  " code
+function! core#DoSwap(ord, motion)
+  call core#DoCharMotion(a:ord, a:motion)
+  undojoin
+  normal! xp''
 endfunction
 
 function! core#DoReplace()
