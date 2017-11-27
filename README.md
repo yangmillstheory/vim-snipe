@@ -1,6 +1,6 @@
 # vim-snipe
 
-> Warning: this is a WIP!
+> Warning: this is a work in progress!
 
 ![nov-26-2017 21-38-00](https://user-images.githubusercontent.com/2729079/33252297-1aab5d24-d2f2-11e7-9200-da6bb39e947b.gif)
 
@@ -34,9 +34,15 @@ nmap <leader><leader>gE <Plug>(smart-motion-gE)
 
 > But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
 
-It does too much.
+[It does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
 
-After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful to extend. So, I'm
-writing my own implementation to add some different features and solve my own problems.
+After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant
+to extend.  So, I'm writing my own implementation to add some different features and solve my own problems.
 
 To be fair, [the core algorithm is almost the same](https://github.com/easymotion/vim-easymotion/pull/359).
+
+> How is it different from `vim-easymotion`?
+
+All motions are constrained on `line('.')`. This is both more natural and more performant.
+
+There ~are~ will be motions for targeted insertions, cuts, and swaps.
