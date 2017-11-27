@@ -185,32 +185,26 @@ function! s:GetJumpCol(jump_tree) " {{{
 endfunction
 " }}}
 
-function! core#DoMotion(ord, motion) " {{{
+function! core#DoCharMotion(ord, motion) " {{{
   if a:ord == 27
     " escape key pressed
     return
   endif
-  let char = nr2char(a:ord)
-  let pattern = '\C'
-  if has_key(s:word_motions, a:motion)
-    throw 'Not implemented'
-  elseif has_key(s:char_motions, a:motion)
-    let pattern .= escape(char, '.$^~')
-  else
-    " TODO: pull out into logging utility
-    echom 'vim-snipe: motion ' . a:motion . ' not implemented.'
-    return
-  endif
   let hits = s:GetHits(
-        \  pattern,
+        \  '\C' . escape(nr2char(a:ord), '.$^~'),
         \  has_key(s:forward_motions, a:motion),
         \  has_key(s:include_motions, a:motion)
         \)
   if len(hits) == 0
     return
   endif
+  call <SID>Jump(hits)
+endfunction
+" }}}
+
+function! s:Jump(hits) " {{{
   let orig_pos = [line('.'), col('.')]
-  let jump_col = s:GetJumpCol(s:GetJumpTree(hits))
+  let jump_col = s:GetJumpCol(s:GetJumpTree(a:hits))
   call cursor(orig_pos[0], orig_pos[1])
   mark '
   call cursor(orig_pos[0], jump_col)
