@@ -129,11 +129,6 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! GetNextJumpToken(jump_tree) " {{{
-
-endfunction
-" }}}
-
 function! s:GetHits(char, motion) " {{{
   let orig_lnum = line('.')
   let hits = []
@@ -163,6 +158,13 @@ function! s:GetHits(char, motion) " {{{
 endfunction
 " }}}
 
+function! s:SafeSetLine(lnum, line) " {{{
+  undojoin
+  call setline(a:lnum, a:line)
+  redraw
+endfunction
+" }}}
+
 function! s:GetJumpCol(jump_tree) " {{{
   let first_lvl = values(a:jump_tree)
   if len(first_lvl) == 1
@@ -185,17 +187,15 @@ function! s:GetJumpCol(jump_tree) " {{{
     call add(hl_ids, matchaddpos(g:smart_motion_hl1_group, [[lnum, jump_col]]))
   endfor
 
-  call setline(lnum, hl_line)
-  redraw
+  call s:SafeSetLine(lnum, hl_line)
 
   let ord_pressed = getchar()
   let key_pressed = nr2char(ord_pressed)
 
-  call setline(lnum, orig_line)
   for hl_id in hl_ids
     call matchdelete(hl_id)
   endfor
-  redraw
+  call s:SafeSetLine(lnum, orig_line)
 
   if key_pressed == 27
     return
