@@ -19,7 +19,7 @@ nmap <leader><leader>f <Plug>(smart-motion-f)
 ### TODO
 
 * [ ] cuts
-* [ ] swaps
+* [X] swaps
 * [ ] inserts
 * [ ] replacements
 * [ ] visual mode
