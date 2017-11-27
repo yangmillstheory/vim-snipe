@@ -163,9 +163,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   let ord_pressed = getchar()
   let key_pressed = nr2char(ord_pressed)
 
-  for hl_id in hl_ids
-    call matchdelete(hl_id)
-  endfor
+  for hl_id in hl_ids | call matchdelete(hl_id) | endfor
   call s:SafeSetLine(lnum, orig_line)
 
   if key_pressed == 27
