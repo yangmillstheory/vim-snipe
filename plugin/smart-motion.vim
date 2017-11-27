@@ -130,11 +130,12 @@ endfunction
 " }}}
 
 function! s:GetHits(char, motion) " {{{
+  echo "hello"
   let orig_lnum = line('.')
   let hits = []
   let flags = ''
   if !has_key(s:forward_motions, a:motion)
-    let flags += 'b'
+    let flags .= 'b'
   endif
   while 1
     let [lnum, cnum] = searchpos(
@@ -220,6 +221,9 @@ function! s:DoMotion(ord, motion) " {{{
     return
   endif
   let char = nr2char(a:ord)
+  echom a:ord
+  echom char
+  echom a:motion
   let hits = s:GetHits(char, a:motion)
   let orig_pos = [line('.'), col('.')]
   let jump_col = s:GetJumpCol(s:GetJumpTree(hits))
