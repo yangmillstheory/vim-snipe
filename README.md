@@ -43,6 +43,7 @@ To be fair, [the core algorithm is almost the same](https://github.com/easymotio
 
 > How is it different from `vim-easymotion`?
 
-All motions are constrained on `line('.')`. This is both more natural and more performant.
+All motions are constrained on `line('.')`. This is both more natural and more performant, and with `set relativenumber`, there's
+no need to scan the entire buffer for `b`, `e`, `w` and friends.
 
 There ~are~ will be motions for targeted insertions, cuts, and swaps.
