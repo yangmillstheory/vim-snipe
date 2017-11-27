@@ -1,4 +1,19 @@
 let s:forward_motions = {'f': 1, 't': 1, 'w': 1, 'e': 1}
+let s:include_motions = {'f': 1, 'F': 1}
+let s:char_motions = {
+      \  'f': 1,
+      \  'F': 1,
+      \  't': 1,
+      \  'T': 1,
+      \}
+let s:word_motions = {
+      \  'w': 1,
+      \  'W': 1,
+      \  'e': 1,
+      \  'E': 1,
+      \  'ge': 1,
+      \  'gE': 1,
+      \}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 
 function! s:GetHitCounts(hits_rem) " {{{
@@ -77,18 +92,18 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! s:GetHits(char, motion) " {{{
+function! s:GetHits(pattern, is_forward, is_inclusive) " {{{
   let orig_lnum = line('.')
   let hits = []
   let flags = ''
-  if !has_key(s:forward_motions, a:motion)
+  if !a:is_forward
     let flags .= 'b'
   endif
   while 1
     let [lnum, cnum] = searchpos(
-          \'\C' . escape(a:char, '.$^~'),
-          \flags,
-          \line('.')
+          \  a:pattern,
+          \  flags,
+          \  line('.')
           \)
     if lnum == 0 && cnum == 0
       " no more hits
@@ -99,13 +114,18 @@ function! s:GetHits(char, motion) " {{{
     elseif lnum != orig_lnum
       throw 'hit on ' . join([lnum, cnum], ',') . ' is on wrong '
             \'line, expected lnum ' . orig_lnum
-    elseif a:motion ==# 't'
-      let cnum -= 1
-    elseif a:motion ==# 'T'
-      let cnum += 1
+    endif
+
+    if !a:is_inclusive
+      if a:is_forward
+        let cnum -= 1
+      else
+        let cnum += 1
+      endif
     endif
     call add(hits, cnum)
   endwhile
+
   return hits
 endfunction
 " }}}
@@ -171,7 +191,21 @@ function! core#DoMotion(ord, motion) " {{{
     return
   endif
   let char = nr2char(a:ord)
-  let hits = s:GetHits(char, a:motion)
+  let pattern = '\C'
+  if has_key(s:word_motions, a:motion)
+    throw 'Not implemented'
+  elseif has_key(s:char_motions, a:motion)
+    let pattern .= escape(char, '.$^~')
+  else
+    " TODO: pull out into logging utility
+    echom 'vim-snipe: motion ' . a:motion . ' not implemented.'
+    return
+  endif
+  let hits = s:GetHits(
+        \  pattern,
+        \  has_key(s:forward_motions, a:motion),
+        \  has_key(s:include_motions, a:motion)
+        \)
   if len(hits) == 0
     return
   endif
