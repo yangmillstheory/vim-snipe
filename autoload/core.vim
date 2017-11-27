@@ -251,9 +251,17 @@ endfunction
 " }}}
 
 function! core#DoSwap(ord, motion)
+  " TODO: save this mark
+  normal mq
   call core#DoCharMotion(a:ord, a:motion)
-  undojoin
-  normal! xp''
+  normal xp`q
+endfunction
+
+function! core#DoCut(ord, motion)
+  " TODO: save this mark
+  normal mq
+  call core#DoCharMotion(a:ord, a:motion)
+  normal x`q
 endfunction
 
 function! core#DoReplace()

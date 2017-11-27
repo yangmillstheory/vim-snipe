@@ -17,6 +17,8 @@ nnoremap <script> <Plug>(snipe-gE) :call core#DoWordMotion('gE')<CR>
 " editing motions
 nnoremap <script> <Plug>(snipe-xp-f) :call core#DoSwap(getchar(), 'f')<CR>
 nnoremap <script> <Plug>(snipe-xp-F) :call core#DoSwap(getchar(), 'F')<CR>
+nnoremap <script> <Plug>(snipe-x-f) :call core#DoCut(getchar(), 'f')<CR>
+nnoremap <script> <Plug>(snipe-x-F) :call core#DoCut(getchar(), 'F')<CR>
 
 call highlight#InitializeHLGroups()
 
