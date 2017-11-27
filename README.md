@@ -11,18 +11,9 @@
 TL;DR:
 
 ```vim
+" ... all possible mappings are in plugin/snipe.vim
 nmap <leader><leader>F <Plug>(smart-motion-F)
 nmap <leader><leader>f <Plug>(smart-motion-f)
-nmap <leader><leader>T <Plug>(smart-motion-T)
-nmap <leader><leader>t <Plug>(smart-motion-t)
-nmap <leader><leader>w <Plug>(smart-motion-w)
-nmap <leader><leader>W <Plug>(smart-motion-W)
-nmap <leader><leader>e <Plug>(smart-motion-e)
-nmap <leader><leader>E <Plug>(smart-motion-E)
-nmap <leader><leader>b <Plug>(smart-motion-b)
-nmap <leader><leader>B <Plug>(smart-motion-B)
-nmap <leader><leader>ge <Plug>(smart-motion-ge)
-nmap <leader><leader>gE <Plug>(smart-motion-gE)
 ```
 
 ### TODO
