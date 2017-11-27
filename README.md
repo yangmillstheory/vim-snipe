@@ -30,6 +30,7 @@ nmap <leader><leader>gE <Plug>(smart-motion-gE)
 * [ ] cuts
 * [ ] swaps
 * [ ] inserts
+* [ ] replacements
 * [ ] visual mode
 * [ ] operator mode
 * [ ] docs
