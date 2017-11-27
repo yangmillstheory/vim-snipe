@@ -135,6 +135,10 @@ function! s:GetHits(char, motion) " {{{
     elseif lnum != orig_lnum
       throw 'hit on ' . join([lnum, cnum], ',') . ' is on wrong '
             \'line, expected lnum ' . orig_lnum
+    elseif a:motion ==# 't'
+      let cnum -= 1
+    elseif a:motion ==# 'T'
+      let cnum += 1
     endif
     call add(hits, cnum)
   endwhile
@@ -204,6 +208,9 @@ function! s:DoMotion(ord, motion) " {{{
   endif
   let char = nr2char(a:ord)
   let hits = s:GetHits(char, a:motion)
+  if len(hits) == 0
+    return
+  endif
   let orig_pos = [line('.'), col('.')]
   let jump_col = s:GetJumpCol(s:GetJumpTree(hits))
   call cursor(orig_pos[0], orig_pos[1])
@@ -212,8 +219,7 @@ function! s:DoMotion(ord, motion) " {{{
 endfunction
 " }}}
 
-nnoremap <script> <Plug>ForwardMotion <SID>DoMotionForward
-nnoremap <script> <Plug>ReverseMotion <SID>DoMotionReverse
-nnoremap <SID>DoMotionReverse :call <SID>DoMotion(getchar(), 'F')<CR>
-nnoremap <SID>DoMotionForward :call <SID>DoMotion(getchar(), 'f')<CR>
-" vim: fdm=marker
+nnoremap <script> <Plug>(smart-motion-f) :call <SID>DoMotion(getchar(), 'f')<CR>
+nnoremap <script> <Plug>(smart-motion-F) :call <SID>DoMotion(getchar(), 'F')<CR>
+nnoremap <script> <Plug>(smart-motion-t) :call <SID>DoMotion(getchar(), 't')<CR>
+nnoremap <script> <Plug>(smart-motion-T) :call <SID>DoMotion(getchar(), 'T')<CR>
