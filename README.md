@@ -1,1 +1,1 @@
-# vim-motions
+# vim-snipe
