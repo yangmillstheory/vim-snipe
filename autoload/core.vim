@@ -1,3 +1,4 @@
+" private variables {{{
 let s:forward_motions = {
       \  'f': 1,
       \  't': 1,
@@ -24,6 +25,7 @@ let s:word_motions = {
       \  'gE': 1,
       \}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
+" }}}
 
 function! s:GetHitCounts(hits_rem) " {{{
   " returns a list corresponding to s:jump_tokens; each
