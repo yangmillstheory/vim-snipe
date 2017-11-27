@@ -1,4 +1,11 @@
-let s:forward_motions = {'f': 1, 't': 1, 'w': 1, 'e': 1}
+let s:forward_motions = {
+      \  'f': 1,
+      \  't': 1,
+      \  'w': 1,
+      \  'W': 1,
+      \  'e': 1,
+      \  'E': 1,
+      \}
 let s:include_motions = {'f': 1, 'F': 1}
 let s:char_motions = {
       \  'f': 1,
@@ -11,6 +18,8 @@ let s:word_motions = {
       \  'W': 1,
       \  'e': 1,
       \  'E': 1,
+      \  'b': 1,
+      \  'B': 1,
       \  'ge': 1,
       \  'gE': 1,
       \}
@@ -92,7 +101,7 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! s:GetHits(pattern, is_forward, is_inclusive) " {{{
+function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
   let orig_lnum = line('.')
   let hits = []
   let flags = ''
@@ -188,7 +197,7 @@ function! core#DoCharMotion(ord, motion) " {{{
     " escape key pressed
     return
   endif
-  let hits = s:GetHits(
+  let hits = s:GetCharHits(
         \  '\C' . escape(nr2char(a:ord), '.$^~'),
         \  has_key(s:forward_motions, a:motion),
         \  has_key(s:include_motions, a:motion)
@@ -196,16 +205,52 @@ function! core#DoCharMotion(ord, motion) " {{{
   if len(hits) == 0
     return
   endif
-  call <SID>Jump(hits)
+  let jump_tree = s:GetJumpTree(hits)
+  call <SID>Jump(s:GetJumpCol(jump_tree))
 endfunction
 " }}}
 
-function! s:Jump(hits) " {{{
+function! s:GetWordHits(motion) " {{{
+  let hits = []
+  let orig_curpos = getcurpos()
+  if has_key(s:forward_motions, a:motion)
+    normal G$
+  else
+    normal gg
+  endif
+  let endpos = getcurpos()
+  call setpos('.', orig_curpos)
+  while 1
+    execute 'normal! ' . a:motion
+    let curpos = getcurpos()
+    let lnum = curpos[1]
+    let cnum = curpos[2]
+    if lnum != orig_curpos[1] || curpos == endpos
+      break
+    endif
+    call add(hits, cnum)
+  endwhile
+  call setpos('.', orig_curpos)
+  return hits
+endfunction
+" }}}
+
+function! core#DoWordMotion(motion) " {{{
+  let hits = s:GetWordHits(a:motion)
+  echom string(hits)
+  if len(hits) == 0
+    return
+  endif
+  let jump_tree = s:GetJumpTree(hits)
+  call <SID>Jump(s:GetJumpCol(jump_tree))
+endfunction
+" }}}
+
+function! s:Jump(jump_col) " {{{
   let orig_pos = [line('.'), col('.')]
-  let jump_col = s:GetJumpCol(s:GetJumpTree(a:hits))
   call cursor(orig_pos[0], orig_pos[1])
   mark '
-  call cursor(orig_pos[0], jump_col)
+  call cursor(orig_pos[0], a:jump_col)
 endfunction
 " }}}
 
