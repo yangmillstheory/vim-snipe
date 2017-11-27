@@ -1,4 +1,4 @@
-let s:forward_motions = {'f': 1, 't': 1}
+let s:forward_motions = {'f': 1, 't': 1, 'w': 1, 'e': 1}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 
 " highlighting; TODO: pull out of this file {{{
@@ -114,7 +114,6 @@ endfunction
 " }}}
 
 function! s:GetHits(char, motion) " {{{
-  echo "hello"
   let orig_lnum = line('.')
   let hits = []
   let flags = ''
