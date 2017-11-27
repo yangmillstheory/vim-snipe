@@ -250,6 +250,20 @@ function! core#DoWordMotion(motion) " {{{
 endfunction
 " }}}
 
+function! core#DoSwap(ord, motion)
+  call core#DoCharMotion(a:ord, a:motion)
+  undojoin
+  normal! xp''
+endfunction
+
+function! core#DoReplace()
+  " code
+endfunction
+
+function! core#DoInsert()
+  " code
+endfunction
+
 function! s:Jump(jump_col) " {{{
   let orig_pos = [line('.'), col('.')]
   call cursor(orig_pos[0], orig_pos[1])
