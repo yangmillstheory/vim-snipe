@@ -23,9 +23,18 @@ nmap <leader><leader>gE <Plug>(smart-motion-gE)
 
 ### TODO
 
-* [ ] highlight occurrences for cuts
-* [ ] highlight occurrences for swaps
-* [ ] highlight occurrences for inserts
+* [ ] cuts
+* [ ] swaps
+* [ ] inserts
 * [ ] visual mode
 * [ ] operator mode
 * [ ] docs
+
+### FAQ
+
+> But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
+
+It does too much for me. After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful to extend. So, I'm
+writing my own implementation to add some different features and solve my own problems.
+
+To be fair, [the core algorithm is almost the same](https://github.com/easymotion/vim-easymotion/pull/359).
