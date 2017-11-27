@@ -1,27 +1,13 @@
 let s:forward_motions = {'f': 1, 't': 1}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
-" let s:jump_tokens = 'abc'
 
 " highlighting; TODO: pull out of this file {{{
 let s:hl1_group_colors = {
     \   'gui'     : ['NONE', '#ff0000' , 'bold']
-    \ , 'cterm256': ['NONE', '196'     , 'bold']
-    \ , 'cterm'   : ['NONE', 'red'     , 'bold']
-    \ }
-let s:hl2_group_colors = {
-    \   'gui'     : ['NONE', '#ffb400' , 'bold']
     \ , 'cterm256': ['NONE', '11'      , 'bold']
     \ , 'cterm'   : ['NONE', 'yellow'  , 'bold']
     \ }
-let s:hl3_group_colors = {
-    \   'gui'     : ['NONE', '#b98300' , 'bold']
-    \ , 'cterm256': ['NONE', '3'       , 'bold']
-    \ , 'cterm'   : ['NONE', 'yellow'  , 'bold']
-    \ }
-
 let g:smart_motion_hl1_group = 'SmartMotionHL1'
-let g:smart_motion_hl2_group = 'SmartMotionHL2'
-let g:smart_motion_hl3_group = 'SmartMotionHL3'
 
 function! s:InitializeHLGroup(hl_group_name, colors) " TODO: understand me! {{{
   let default_hl_group_name = a:hl_group_name . 'Default'
@@ -41,8 +27,6 @@ endfunction " }}}
 
 function! s:InitializeHLGroups()
   call <SID>InitializeHLGroup(g:smart_motion_hl1_group, s:hl1_group_colors)
-  call <SID>InitializeHLGroup(g:smart_motion_hl2_group, s:hl2_group_colors)
-  call <SID>InitializeHLGroup(g:smart_motion_hl3_group, s:hl3_group_colors)
 endfunction
 
 call <SID>InitializeHLGroups()
@@ -176,7 +160,6 @@ function! s:GetJumpCol(jump_tree) " {{{
   let orig_line = getline(lnum)
   let hl_ids = []
   let hl_line = orig_line
-  echom string(jump_dict)
   for [jump_seq, jump_col] in items(jump_dict)
     " https://github.com/yangmillstheory/vim-easymotion/blob/1e775c341eb6a0a4075b2dcb2475f7d10b876187/autoload/EasyMotion.vim#L989
     let hit_len = strdisplaywidth(matchstr(orig_line, '\%' . jump_col . 'c.'))
@@ -221,9 +204,6 @@ function! s:DoMotion(ord, motion) " {{{
     return
   endif
   let char = nr2char(a:ord)
-  echom a:ord
-  echom char
-  echom a:motion
   let hits = s:GetHits(char, a:motion)
   let orig_pos = [line('.'), col('.')]
   let jump_col = s:GetJumpCol(s:GetJumpTree(hits))
