@@ -2,7 +2,9 @@
 
 **Warning: this is a work in progress!**
 
-![nov-26-2017 21-38-00](https://user-images.githubusercontent.com/2729079/33252297-1aab5d24-d2f2-11e7-9200-da6bb39e947b.gif)
+<p align="center">
+  <img alt="vim-snipe" src="https://user-images.githubusercontent.com/2729079/33256249-23767e84-d306-11e7-952d-b19821edc2ce.gif">
+</p>
 
 ### Getting started
 
