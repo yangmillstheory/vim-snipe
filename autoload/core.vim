@@ -242,7 +242,6 @@ endfunction
 
 function! core#DoWordMotion(motion) " {{{
   let hits = s:GetWordHits(a:motion)
-  echom string(hits)
   if len(hits) == 0
     return
   endif
