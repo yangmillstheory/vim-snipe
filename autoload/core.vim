@@ -251,17 +251,19 @@ endfunction
 " }}}
 
 function! core#DoSwap(ord, motion)
-  " TODO: save this mark
+  let q_mark_pos = getpos("'q")
   normal mq
   call core#DoCharMotion(a:ord, a:motion)
   normal xp`q
+  call setpos("'q", q_mark_pos)
 endfunction
 
 function! core#DoCut(ord, motion)
-  " TODO: save this mark
+  let q_mark_pos = getpos("'q")
   normal mq
   call core#DoCharMotion(a:ord, a:motion)
   normal x`q
+  call setpos("'q", q_mark_pos)
 endfunction
 
 function! core#DoReplace()
