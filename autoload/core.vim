@@ -142,7 +142,7 @@ endfunction
 " }}}
 
 function! s:SafeSetLine(lnum, line) " {{{
-  undojoin
+  try | silent undojoin | catch | endtry
   call setline(a:lnum, a:line)
   redraw
 endfunction
@@ -250,27 +250,54 @@ function! core#DoWordMotion(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoSwap(ord, motion)
-  " TODO: save this mark
+function! DoAndGoBack(f) " {{{
+  let q_mark_pos = getpos("'q")
   normal mq
+  call a:f()
+  normal `q
+  call setpos("'q", q_mark_pos)
+endfunction
+" }}}
+
+function! core#DoSwap(ord, motion) " {{{
+  function! DoSwap(...)
+    call core#DoCharMotion(a:1, a:2)
+    normal xp
+  endfunction
+  call DoAndGoBack(
+        \ function('DoSwap', [a:ord, a:motion])
+        \)
+endfunction
+" }}}
+
+function! core#DoCut(ord, motion) " {{{
+  function! DoCut(...)
+    call core#DoCharMotion(a:1, a:2)
+    normal x
+  endfunction
+  call DoAndGoBack(
+        \ function('DoCut', [a:ord, a:motion])
+        \)
+endfunction
+
+function! core#DoReplace(ord, motion)
+  function! DoReplace(...)
+    call core#DoCharMotion(a:1, a:2)
+    echo 'Enter replacement character: '
+    execute 'normal r' . nr2char(getchar())
+  endfunction
+  call DoAndGoBack(
+        \ function('DoReplace', [a:ord, a:motion])
+        \)
+endfunction
+" }}}
+
+function! core#DoSub(ord, motion) " {{{
   call core#DoCharMotion(a:ord, a:motion)
-  normal xp`q
+  normal x
+  startinsert
 endfunction
-
-function! core#DoCut(ord, motion)
-  " TODO: save this mark
-  normal mq
-  call core#DoCharMotion(a:ord, a:motion)
-  normal x`q
-endfunction
-
-function! core#DoReplace()
-  " code
-endfunction
-
-function! core#DoInsert()
-  " code
-endfunction
+" }}}
 
 function! s:Jump(jump_col) " {{{
   let orig_pos = [line('.'), col('.')]

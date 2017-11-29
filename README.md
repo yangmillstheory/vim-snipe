@@ -8,20 +8,58 @@
 
 ### Getting started
 
-TL;DR:
+Character motions
 
 ```vim
-" ... all possible mappings are in plugin/snipe.vim
-nmap <leader><leader>F <Plug>(smart-motion-F)
-nmap <leader><leader>f <Plug>(smart-motion-f)
+nmap <leader><leader>F <Plug>(snipe-F)
+nmap <leader><leader>f <Plug>(snipe-f)
+nmap <leader><leader>T <Plug>(snipe-T)
+nmap <leader><leader>t <Plug>(snipe-t)
+```
+
+Word motions
+
+```vim
+nmap <leader><leader>w <Plug>(snipe-w)
+nmap <leader><leader>W <Plug>(snipe-W)
+nmap <leader><leader>e <Plug>(snipe-e)
+nmap <leader><leader>E <Plug>(snipe-E)
+nmap <leader><leader>b <Plug>(snipe-b)
+nmap <leader><leader>B <Plug>(snipe-B)
+nmap <leader><leader>ge <Plug>(snipe-ge)
+nmap <leader><leader>gE <Plug>(snipe-gE)
+```
+
+Swap `xp`
+
+```vim
+nmap <leader><leader>] <Plug>(snipe-f-xp)
+nmap <leader><leader>[ <Plug>(snipe-f-xp)
+```
+
+Cut `x`
+
+```vim
+nmap <leader><leader>> <Plug>(snipe-f-x)
+nmap <leader><leader>< <Plug>(snipe-F-x)
+```
+
+Replace `r`
+
+```vim
+nmap <leader><leader>. <Plug>(snipe-f-r)
+nmap <leader><leader>, <Plug>(snipe-F-r)
+```
+
+Substitute `s`
+
+```vim
+nmap <leader><leader>+ <Plug>(snipe-f-s)
+nmap <leader><leader>- <Plug>(snipe-F-s)
 ```
 
 ### TODO
 
-* [ ] cuts
-* [X] swaps
-* [ ] inserts
-* [ ] replacements
 * [ ] visual mode
 * [ ] operator mode
 * [ ] docs
