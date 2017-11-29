@@ -97,17 +97,19 @@ nmap <leader><leader>- <Plug>(snipe-F-s)
 
 > But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
 
-[It does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+No, and [it does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+
+> Why didn't you extend it instead?
 
 After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant
-to extend.  So, I'm writing my own implementation to add some different features and solve my own problems.
+to extend.
 
 To be fair, [the core algorithm is almost the same](https://github.com/easymotion/vim-easymotion/pull/359).
 
-> How is it different from `vim-easymotion`?
+> How is it different?
 
 All motions are constrained on `line('.')`. This is both more natural and more performant, and with `set relativenumber`, there's
 no need to scan the entire buffer for `b`, `e`, `w` and friends.
 
-There ~are~ will be motions for targeted insertions, cuts, and swaps.
+There are will be motions for targeted insertions, cuts, and swaps.
 
