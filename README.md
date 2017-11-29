@@ -6,9 +6,9 @@
 
 Character motions
 
-![f](https://user-images.githubusercontent.com/2729079/33358485-c2981e28-d47d-11e7-9f88-739cb73a92f9.gif)
-
 > Jump forward to an "e"
+
+![f](https://user-images.githubusercontent.com/2729079/33358485-c2981e28-d47d-11e7-9f88-739cb73a92f9.gif)
 
 ```vim
 nmap <leader><leader>F <Plug>(snipe-F)
@@ -36,9 +36,9 @@ nmap <leader><leader>gE <Plug>(snipe-gE)
 
 Swap `xp`
 
-![xp](https://user-images.githubusercontent.com/2729079/33358623-8b80a742-d47e-11e7-8c46-e800b5e17e9a.gif)
-
 > Fix the typo in "croe"
+
+![xp](https://user-images.githubusercontent.com/2729079/33358623-8b80a742-d47e-11e7-8c46-e800b5e17e9a.gif)
 
 ```vim
 nmap <leader><leader>] <Plug>(snipe-f-xp)
@@ -47,9 +47,9 @@ nmap <leader><leader>[ <Plug>(snipe-f-xp)
 
 Cut `x`
 
-![x](https://user-images.githubusercontent.com/2729079/33358650-b9777c34-d47e-11e7-842a-3756cda89ddc.gif)
-
 > Cut an extra `,`
+
+![x](https://user-images.githubusercontent.com/2729079/33358650-b9777c34-d47e-11e7-842a-3756cda89ddc.gif)
 
 ```vim
 nmap <leader><leader>> <Plug>(snipe-f-x)
@@ -58,9 +58,9 @@ nmap <leader><leader>< <Plug>(snipe-F-x)
 
 Replace `r`
 
-![r](https://user-images.githubusercontent.com/2729079/33358695-fa0d6736-d47e-11e7-95f4-6850520498c6.gif)
-
 > Replace a previous "o"
+
+![r](https://user-images.githubusercontent.com/2729079/33358695-fa0d6736-d47e-11e7-95f4-6850520498c6.gif)
 
 ```vim
 nmap <leader><leader>. <Plug>(snipe-f-r)
@@ -69,9 +69,9 @@ nmap <leader><leader>, <Plug>(snipe-F-r)
 
 Substitute `s`
 
-![i](https://user-images.githubusercontent.com/2729079/33358804-bdf2bb06-d47f-11e7-99fa-b4249e75a1dd.gif)
-
 > Substitute starting from "p"
+
+![i](https://user-images.githubusercontent.com/2729079/33358804-bdf2bb06-d47f-11e7-99fa-b4249e75a1dd.gif)
 
 ```vim
 nmap <leader><leader>+ <Plug>(snipe-f-s)
