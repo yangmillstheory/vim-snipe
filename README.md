@@ -67,17 +67,6 @@ nmap <leader><leader>. <Plug>(snipe-f-r)
 nmap <leader><leader>, <Plug>(snipe-F-r)
 ```
 
-Substitute `s`
-
-> Substitute starting from "p"
-
-![i](https://user-images.githubusercontent.com/2729079/33358804-bdf2bb06-d47f-11e7-99fa-b4249e75a1dd.gif)
-
-```vim
-nmap <leader><leader>+ <Plug>(snipe-f-s)
-nmap <leader><leader>- <Plug>(snipe-F-s)
-```
-
 ### TODO
 
 * [ ] visual mode
