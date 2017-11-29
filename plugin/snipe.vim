@@ -21,8 +21,6 @@ nnoremap <script> <Plug>(snipe-f-x) :call core#DoCut(getchar(), 'f')<CR>
 nnoremap <script> <Plug>(snipe-F-x) :call core#DoCut(getchar(), 'F')<CR>
 nnoremap <script> <Plug>(snipe-f-r) :call core#DoReplace(getchar(), 'f')<CR>
 nnoremap <script> <Plug>(snipe-F-r) :call core#DoReplace(getchar(), 'F')<CR>
-nnoremap <script> <Plug>(snipe-f-s) :call core#DoSub(getchar(), 'f')<CR>
-nnoremap <script> <Plug>(snipe-F-s) :call core#DoSub(getchar(), 'F')<CR>
 
 call highlight#InitializeHLGroups()
 

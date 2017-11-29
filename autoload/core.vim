@@ -262,7 +262,7 @@ endfunction
 function! core#DoSwap(ord, motion) " {{{
   function! DoSwap(...)
     call core#DoCharMotion(a:1, a:2)
-    normal xp
+    normal "_xp
   endfunction
   call DoAndGoBack(
         \ function('DoSwap', [a:ord, a:motion])
@@ -273,7 +273,7 @@ endfunction
 function! core#DoCut(ord, motion) " {{{
   function! DoCut(...)
     call core#DoCharMotion(a:1, a:2)
-    normal x
+    normal "_x
   endfunction
   call DoAndGoBack(
         \ function('DoCut', [a:ord, a:motion])
@@ -289,13 +289,6 @@ function! core#DoReplace(ord, motion)
   call DoAndGoBack(
         \ function('DoReplace', [a:ord, a:motion])
         \)
-endfunction
-" }}}
-
-function! core#DoSub(ord, motion) " {{{
-  call core#DoCharMotion(a:ord, a:motion)
-  normal x
-  startinsert
 endfunction
 " }}}
 
