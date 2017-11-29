@@ -2,7 +2,16 @@
 
 **Warning: this is a work in progress!**
 
-### Getting started
+### Installing
+
+If you use a plugin manager such as [vim-plug](https://github.com/junegunn/vim-plug)
+this is as simple as
+
+```vim
+Plug 'yangmillstheory/vim-snipe'
+```
+
+### Usage
 
 Character motions
 
