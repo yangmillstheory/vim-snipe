@@ -2,13 +2,13 @@
 
 **Warning: this is a work in progress!**
 
-<p align="center">
-  <img alt="vim-snipe" src="https://user-images.githubusercontent.com/2729079/33256249-23767e84-d306-11e7-952d-b19821edc2ce.gif">
-</p>
-
 ### Getting started
 
 Character motions
+
+![f](https://user-images.githubusercontent.com/2729079/33358485-c2981e28-d47d-11e7-9f88-739cb73a92f9.gif)
+
+> Jump forward to an "e"
 
 ```vim
 nmap <leader><leader>F <Plug>(snipe-F)
@@ -18,6 +18,10 @@ nmap <leader><leader>t <Plug>(snipe-t)
 ```
 
 Word motions
+
+> Jump to a previous start of word
+
+![b](https://user-images.githubusercontent.com/2729079/33358540-17101a5a-d47e-11e7-9fef-9520662356b0.gif)
 
 ```vim
 nmap <leader><leader>w <Plug>(snipe-w)
@@ -32,12 +36,20 @@ nmap <leader><leader>gE <Plug>(snipe-gE)
 
 Swap `xp`
 
+![xp](https://user-images.githubusercontent.com/2729079/33358623-8b80a742-d47e-11e7-8c46-e800b5e17e9a.gif)
+
+> Fix the typo in "croe"
+
 ```vim
 nmap <leader><leader>] <Plug>(snipe-f-xp)
 nmap <leader><leader>[ <Plug>(snipe-f-xp)
 ```
 
 Cut `x`
+
+![x](https://user-images.githubusercontent.com/2729079/33358650-b9777c34-d47e-11e7-842a-3756cda89ddc.gif)
+
+> Cut an extra `,`
 
 ```vim
 nmap <leader><leader>> <Plug>(snipe-f-x)
@@ -46,12 +58,20 @@ nmap <leader><leader>< <Plug>(snipe-F-x)
 
 Replace `r`
 
+![r](https://user-images.githubusercontent.com/2729079/33358695-fa0d6736-d47e-11e7-95f4-6850520498c6.gif)
+
+> Replace a previous "o"
+
 ```vim
 nmap <leader><leader>. <Plug>(snipe-f-r)
 nmap <leader><leader>, <Plug>(snipe-F-r)
 ```
 
 Substitute `s`
+
+![i](https://user-images.githubusercontent.com/2729079/33358804-bdf2bb06-d47f-11e7-99fa-b4249e75a1dd.gif)
+
+> Substitute starting from "p"
 
 ```vim
 nmap <leader><leader>+ <Plug>(snipe-f-s)
@@ -81,3 +101,4 @@ All motions are constrained on `line('.')`. This is both more natural and more p
 no need to scan the entire buffer for `b`, `e`, `w` and friends.
 
 There ~are~ will be motions for targeted insertions, cuts, and swaps.
+
