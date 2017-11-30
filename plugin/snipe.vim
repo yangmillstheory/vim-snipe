@@ -10,7 +10,7 @@ vnoremap <script> <Plug>(snipe-T) :<c-u>call core#DoCharMotion('T', visualmode()
 onoremap <script> <Plug>(snipe-f) :call core#DoCharMotion('f', mode(1))<CR>
 onoremap <script> <Plug>(snipe-F) :call core#DoCharMotion('F', mode(1))<CR>
 onoremap <script> <Plug>(snipe-t) :call core#DoCharMotion('t', mode(1))<CR>
-onoremap <script> <Plug>(snipe-T) :call core#DoCharMotion('T')<CR>
+onoremap <script> <Plug>(snipe-T) :call core#DoCharMotion('T', mode(1))<CR>
 
 " word motions
 nnoremap <script> <Plug>(snipe-w)  :acll core#DoWordMotion('w')<CR>
