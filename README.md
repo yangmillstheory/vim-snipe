@@ -2,6 +2,10 @@
 
 > Fast linewise motions and edits
 
+### Why
+
+I'm a terrible typist, and wanted to minimize repetition when correcting my mistakes.
+
 ### Install
 
 If you use a plugin manager this is as simple as
@@ -86,8 +90,10 @@ After looking at the code, it's indeed monolithic, large, sprawling, and (in my 
 > How is it different?
 
 * [all common word motions are supported](https://github.com/easymotion/vim-easymotion/issues/354)
-* all motions are constrained on `line('.')`
-  * this is both more natural and more performant, and with `set relativenumber`, there's no need to scan the entire buffer for `b`, `e`, `w` and friends
+* all motions are constrained on `line('.')`, because
+  * this is more natural
+  * this is more performant
+  * there's no need to scan the entire buffer given `set relativenumber`
 * there are motions for singe-character replacements, cuts, and swaps - which is my most common use case
 
 ### TODO
