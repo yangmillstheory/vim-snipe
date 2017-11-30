@@ -78,8 +78,6 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 ### TODO
 
-* [ ] visual mode
-* [ ] operator mode
 * [ ] docs
 
 ### FAQ
