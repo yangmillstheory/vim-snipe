@@ -1,102 +1,95 @@
 # vim-snipe
 
-**Warning: this is a work in progress!**
+> Fast linewise motions and edits
 
-### Installing
+### Install
 
-If you use a plugin manager such as [vim-plug](https://github.com/junegunn/vim-plug)
-this is as simple as
+If you use a plugin manager this is as simple as
 
 ```vim
 Plug 'yangmillstheory/vim-snipe'
 ```
 
+The above example uses [vim-plug](https://github.com/junegunn/vim-plug).
+
 ### Usage
 
-*Character motions*
+Note that all motions below (except, of course, cutting, swapping, and replacing) work in character-visual and operator-pending modes.
 
-> Jump forward to an "e"
-
-![f](https://user-images.githubusercontent.com/2729079/33358485-c2981e28-d47d-11e7-9f88-739cb73a92f9.gif)
+#### Character motions
 
 ```vim
-nmap <leader><leader>F <Plug>(snipe-F)
-nmap <leader><leader>f <Plug>(snipe-f)
-nmap <leader><leader>T <Plug>(snipe-T)
-nmap <leader><leader>t <Plug>(snipe-t)
+map <leader><leader>F <Plug>(snipe-F)
+map <leader><leader>f <Plug>(snipe-f)
+map <leader><leader>T <Plug>(snipe-T)
+map <leader><leader>t <Plug>(snipe-t)
 ```
 
-*Word motions*
+![f](https://user-images.githubusercontent.com/2729079/33415309-7fc23138-d54a-11e7-9c02-a48e84ee4f8a.gif)
 
-> Jump to a previous start of word
 
-![b](https://user-images.githubusercontent.com/2729079/33358540-17101a5a-d47e-11e7-9fef-9520662356b0.gif)
+#### Word motions
 
 ```vim
-nmap <leader><leader>w <Plug>(snipe-w)
-nmap <leader><leader>W <Plug>(snipe-W)
-nmap <leader><leader>e <Plug>(snipe-e)
-nmap <leader><leader>E <Plug>(snipe-E)
-nmap <leader><leader>b <Plug>(snipe-b)
-nmap <leader><leader>B <Plug>(snipe-B)
-nmap <leader><leader>ge <Plug>(snipe-ge)
-nmap <leader><leader>gE <Plug>(snipe-gE)
+map <leader><leader>w <Plug>(snipe-w)
+map <leader><leader>W <Plug>(snipe-W)
+map <leader><leader>e <Plug>(snipe-e)
+map <leader><leader>E <Plug>(snipe-E)
+map <leader><leader>b <Plug>(snipe-b)
+map <leader><leader>B <Plug>(snipe-B)
+map <leader><leader>ge <Plug>(snipe-ge)
+map <leader><leader>gE <Plug>(snipe-gE)
 ```
 
-*Swap `xp`*
+![ge](https://user-images.githubusercontent.com/2729079/33415310-84d2ff72-d54a-11e7-8572-70e7292b123e.gif)
 
-> Fix the typo in "croe"
 
-![xp](https://user-images.githubusercontent.com/2729079/33358623-8b80a742-d47e-11e7-8c46-e800b5e17e9a.gif)
+#### Swap `xp`
 
 ```vim
 nmap <leader><leader>] <Plug>(snipe-f-xp)
 nmap <leader><leader>[ <Plug>(snipe-f-xp)
 ```
 
-*Cut `x`*
+![xp](https://user-images.githubusercontent.com/2729079/33415312-8af8eb64-d54a-11e7-920a-c14069b25704.gif)
 
-> Cut an extra `,`
 
-![x](https://user-images.githubusercontent.com/2729079/33358650-b9777c34-d47e-11e7-842a-3756cda89ddc.gif)
+#### Cut `x`
 
 ```vim
 nmap <leader><leader>x <Plug>(snipe-f-x)
 nmap <leader><leader>X <Plug>(snipe-F-x)
 ```
 
-*Replace `r`*
+![x](https://user-images.githubusercontent.com/2729079/33415315-8e209210-d54a-11e7-9dfa-b9a6701901d6.gif)
 
-> Replace a previous "o"
+#### Replace `r`
 
-![r](https://user-images.githubusercontent.com/2729079/33358695-fa0d6736-d47e-11e7-95f4-6850520498c6.gif)
 
 ```vim
 nmap <leader><leader>r <Plug>(snipe-f-r)
 nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
-### TODO
-
-* [ ] docs
+![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
 
 ### FAQ
 
 > But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
 
-No, and [it does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+[No](https://github.com/easymotion/vim-easymotion/issues/354), and [it does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
 
-> Why didn't you extend it instead?
+> But why didn't you extend it instead?
 
-After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant
-to extend.
-
-To be fair, [the core algorithm is almost the same](https://github.com/easymotion/vim-easymotion/pull/359).
+After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant to extend. However, [one of the core algorithms is similar](https://github.com/easymotion/vim-easymotion/pull/359).
 
 > How is it different?
 
-All motions are constrained on `line('.')`. This is both more natural and more performant, and with `set relativenumber`, there's
-no need to scan the entire buffer for `b`, `e`, `w` and friends.
+* [all common word motions are supported](https://github.com/easymotion/vim-easymotion/issues/354)
+* all motions are constrained on `line('.')`
+  * this is both more natural and more performant, and with `set relativenumber`, there's no need to scan the entire buffer for `b`, `e`, `w` and friends
+* there are motions for singe-character replacements, cuts, and swaps - which is my most common use case
 
-There are will be motions for targeted insertions, cuts, and swaps.
+### TODO
 
+* [ ] `:h snipe`
