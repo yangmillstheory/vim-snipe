@@ -105,6 +105,7 @@ endfunction
 
 function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
   let orig_lnum = line('.')
+  let orig_cnum = col('.')
   let hits = []
   let flags = ''
   if !a:is_forward
@@ -136,7 +137,7 @@ function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
     endif
     call add(hits, cnum)
   endwhile
-
+  call cursor(orig_lnum, orig_cnum )
   return hits
 endfunction
 " }}}
