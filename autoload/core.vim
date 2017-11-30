@@ -265,10 +265,13 @@ endfunction
 " }}}
 
 function! s:Jump(jump_col, mode) " {{{
+  let jump_col = a:jump_col
   if a:mode ==# 'v'
     normal! v
+  elseif a:mode ==# 'no'
+    let jump_col += col('.') < a:jump_col
   endif
-  call cursor(line('.'), a:jump_col)
+  call cursor(line('.'), jump_col)
 endfunction
 " }}}
 
