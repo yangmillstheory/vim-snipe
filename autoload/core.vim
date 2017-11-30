@@ -1,4 +1,5 @@
 " private variables {{{
+let s:known_modes = {'no': 1, 'v': 1, '': 1}
 let s:esc_ord = 27
 let s:forward_motions = {
       \  'f': 1,
@@ -247,12 +248,16 @@ function! s:GetWordHits(motion) " {{{
       break
     endif
   endwhile
+  echom orig_curpos[2]
   call setpos('.', orig_curpos)
   return hits
 endfunction
 " }}}
 
 function! core#DoWordMotion(motion, mode) " {{{
+  if !has_key(s:known_modes, a:mode)
+    return
+  endif
   let hits = s:GetWordHits(a:motion)
   if len(hits) == 0
     return
