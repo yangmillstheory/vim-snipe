@@ -13,7 +13,7 @@ onoremap <script> <Plug>(snipe-t) :call core#DoCharMotion('t', mode(1))<CR>
 onoremap <script> <Plug>(snipe-T) :call core#DoCharMotion('T', mode(1))<CR>
 
 " word motions
-nnoremap <script> <Plug>(snipe-w)  :acll core#DoWordMotion('w')<CR>
+nnoremap <script> <Plug>(snipe-w)  :call core#DoWordMotion('w')<CR>
 nnoremap <script> <Plug>(snipe-W)  :call core#DoWordMotion('W')<CR>
 nnoremap <script> <Plug>(snipe-e)  :call core#DoWordMotion('e')<CR>
 nnoremap <script> <Plug>(snipe-E)  :call core#DoWordMotion('E')<CR>
@@ -21,6 +21,22 @@ nnoremap <script> <Plug>(snipe-b)  :call core#DoWordMotion('b')<CR>
 nnoremap <script> <Plug>(snipe-B)  :call core#DoWordMotion('B')<CR>
 nnoremap <script> <Plug>(snipe-ge) :call core#DoWordMotion('ge')<CR>
 nnoremap <script> <Plug>(snipe-gE) :call core#DoWordMotion('gE')<CR>
+vnoremap <script> <Plug>(snipe-w)  :call core#DoWordMotion('w', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-W)  :call core#DoWordMotion('W', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-e)  :call core#DoWordMotion('e', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-E)  :call core#DoWordMotion('E', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-b)  :call core#DoWordMotion('b', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-B)  :call core#DoWordMotion('B', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-ge) :call core#DoWordMotion('ge', visualmode())<CR>
+vnoremap <script> <Plug>(snipe-gE) :call core#DoWordMotion('gE', visualmode())<CR>
+onoremap <script> <Plug>(snipe-w)  :call core#DoWordMotion('w', mode(1))<CR>
+onoremap <script> <Plug>(snipe-W)  :call core#DoWordMotion('W', mode(1))<CR>
+onoremap <script> <Plug>(snipe-e)  :call core#DoWordMotion('e', mode(1))<CR>
+onoremap <script> <Plug>(snipe-E)  :call core#DoWordMotion('E', mode(1))<CR>
+onoremap <script> <Plug>(snipe-b)  :call core#DoWordMotion('b', mode(1))<CR>
+onoremap <script> <Plug>(snipe-B)  :call core#DoWordMotion('B', mode(1))<CR>
+onoremap <script> <Plug>(snipe-ge) :call core#DoWordMotion('ge', mode(1))<CR>
+onoremap <script> <Plug>(snipe-gE) :call core#DoWordMotion('gE', mode(1))<CR>
 
 " editing motions
 nnoremap <script> <Plug>(snipe-f-xp) :call core#DoSwap('f')<CR>

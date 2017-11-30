@@ -252,13 +252,13 @@ function! s:GetWordHits(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoWordMotion(motion) " {{{
+function! core#DoWordMotion(motion, mode) " {{{
   let hits = s:GetWordHits(a:motion)
   if len(hits) == 0
     return
   endif
   let jump_tree = s:GetJumpTree(hits)
-  call <SID>Jump(s:GetJumpCol(jump_tree))
+  call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
 endfunction
 " }}}
 
