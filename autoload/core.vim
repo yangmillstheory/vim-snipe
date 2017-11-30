@@ -259,6 +259,14 @@ function! DoAndGoBack(f) " {{{
 endfunction
 " }}}
 
+function! s:Jump(jump_col) " {{{
+  let orig_pos = [line('.'), col('.')]
+  call cursor(orig_pos[0], orig_pos[1])
+  mark '
+  call cursor(orig_pos[0], a:jump_col)
+endfunction
+" }}}
+
 function! core#DoSwap(ord, motion) " {{{
   function! DoSwap(...)
     let saved = @"
@@ -291,14 +299,6 @@ function! core#DoReplace(ord, motion)
   call DoAndGoBack(
         \ function('DoReplace', [a:ord, a:motion])
         \)
-endfunction
-" }}}
-
-function! s:Jump(jump_col) " {{{
-  let orig_pos = [line('.'), col('.')]
-  call cursor(orig_pos[0], orig_pos[1])
-  mark '
-  call cursor(orig_pos[0], a:jump_col)
 endfunction
 " }}}
 
