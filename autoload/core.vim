@@ -1,4 +1,5 @@
 " private variables {{{
+let s:esc_ord = 27
 let s:forward_motions = {
       \  'f': 1,
       \  't': 1,
@@ -149,6 +150,14 @@ function! s:SafeSetLine(lnum, line) " {{{
 endfunction
 " }}}
 
+function! s:GetInput(message) " {{{
+  echo a:message
+  let ord = getchar()
+  normal :<c-u>
+  return ord
+endfunction
+" }}}
+
 function! s:GetJumpCol(jump_tree) " {{{
   " FIXME remove side effects, like highlighting, or rename
   let first_lvl = values(a:jump_tree)
@@ -179,7 +188,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   for hl_id in hl_ids | call matchdelete(hl_id) | endfor
   call s:SafeSetLine(lnum, orig_line)
 
-  if key_pressed == 27
+  if key_pressed == s:esc_ord
     return
   elseif empty(key_pressed)
     throw 'Jump cancelled!'
@@ -197,23 +206,21 @@ endfunction
 " }}}
 
 function! core#DoCharMotion(motion, mode) " {{{
-  echo 'Enter target character: '
-  let ord = getchar()
-  normal :<c-u>
-  if ord == 27
-    " escape key pressed
-    return
-  endif
+  " returns 1 if the motion was successful, 0 in case
+  " there was nowhere to jump to or the jump was cancelled
+  let ord = s:GetInput( 'Enter target character: ')
+  if ord == s:esc_ord | return 0 | endif
   let hits = s:GetCharHits(
         \  '\C' . escape(nr2char(ord), '.$^~'),
         \  has_key(s:forward_motions, a:motion),
         \  has_key(s:include_motions, a:motion)
         \)
   if len(hits) == 0
-    return
+    return 0
   endif
   let jump_tree = s:GetJumpTree(hits)
   call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
+  return 1
 endfunction
 " }}}
 
@@ -275,38 +282,41 @@ function! s:Jump(jump_col, mode) " {{{
 endfunction
 " }}}
 
-function! core#DoSwap(ord, motion) " {{{
+function! core#DoSwap(motion) " {{{
   function! DoSwap(...)
     let saved = @"
-    call core#DoCharMotion(a:1, a:2)
-    normal xp
+    let did_jump = core#DoCharMotion(a:1, '')
+    if did_jump
+      normal xp
+    endif
     let @" = saved
   endfunction
-  call DoAndGoBack(
-        \ function('DoSwap', [a:ord, a:motion])
-        \)
+  call DoAndGoBack(function('DoSwap', [a:motion]))
 endfunction
 " }}}
 
-function! core#DoCut(ord, motion) " {{{
+function! core#DoCut(motion) " {{{
   function! DoCut(...)
-    call core#DoCharMotion(a:1, a:2)
-    normal "_x
+    let did_jump = core#DoCharMotion(a:1, '')
+    if did_jump
+      normal "_x
+    endif
   endfunction
-  call DoAndGoBack(
-        \ function('DoCut', [a:ord, a:motion])
-        \)
+  call DoAndGoBack(function('DoCut', [a:motion]))
 endfunction
+" }}}
 
-function! core#DoReplace(ord, motion)
+function! core#DoReplace(motion) " {{{
   function! DoReplace(...)
-    call core#DoCharMotion(a:1, a:2)
-    execute 'normal r' . input( 'Enter replacement character: ')
-    normal :<c-u>
+    let did_jump = core#DoCharMotion(a:1, '')
+    if !did_jump
+      return
+    endif
+    let ord = s:GetInput('Enter replacement: ')
+    if ord == s:esc_ord | return | endif
+    execute 'normal r' . nr2char(ord)
   endfunction
-  call DoAndGoBack(
-        \ function('DoReplace', [a:ord, a:motion])
-        \)
+  call DoAndGoBack(function('DoReplace', [a:motion]))
 endfunction
 " }}}
 
