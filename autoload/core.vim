@@ -261,8 +261,10 @@ endfunction
 
 function! core#DoSwap(ord, motion) " {{{
   function! DoSwap(...)
+    let saved = @"
     call core#DoCharMotion(a:1, a:2)
-    normal "_xp
+    normal xp
+    let @" = saved
   endfunction
   call DoAndGoBack(
         \ function('DoSwap', [a:ord, a:motion])
