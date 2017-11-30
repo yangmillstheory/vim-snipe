@@ -150,6 +150,7 @@ endfunction
 " }}}
 
 function! s:GetJumpCol(jump_tree) " {{{
+  " FIXME remove side effects, like highlighting, or rename
   let first_lvl = values(a:jump_tree)
   if len(first_lvl) == 1
     return first_lvl[0]
@@ -195,13 +196,16 @@ function! s:GetJumpCol(jump_tree) " {{{
 endfunction
 " }}}
 
-function! core#DoCharMotion(ord, motion) " {{{
-  if a:ord == 27
+function! core#DoCharMotion(motion, mode) " {{{
+  echo 'Enter target character: '
+  let ord = getchar()
+  normal :<c-u>
+  if ord == 27
     " escape key pressed
     return
   endif
   let hits = s:GetCharHits(
-        \  '\C' . escape(nr2char(a:ord), '.$^~'),
+        \  '\C' . escape(nr2char(ord), '.$^~'),
         \  has_key(s:forward_motions, a:motion),
         \  has_key(s:include_motions, a:motion)
         \)
@@ -209,7 +213,7 @@ function! core#DoCharMotion(ord, motion) " {{{
     return
   endif
   let jump_tree = s:GetJumpTree(hits)
-  call <SID>Jump(s:GetJumpCol(jump_tree))
+  call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
 endfunction
 " }}}
 
@@ -224,7 +228,7 @@ function! s:GetWordHits(motion) " {{{
   let endpos = getcurpos()
   call setpos('.', orig_curpos)
   while 1
-    execute 'normal! ' . a:motion
+    execute 'keepjumps normal! ' . a:motion
     let curpos = getcurpos()
     let lnum = curpos[1]
     let cnum = curpos[2]
@@ -260,11 +264,11 @@ function! DoAndGoBack(f) " {{{
 endfunction
 " }}}
 
-function! s:Jump(jump_col) " {{{
-  let orig_pos = [line('.'), col('.')]
-  call cursor(orig_pos[0], orig_pos[1])
-  mark '
-  call cursor(orig_pos[0], a:jump_col)
+function! s:Jump(jump_col, mode) " {{{
+  if a:mode ==# 'v'
+    normal! v
+  endif
+  call cursor(line('.'), a:jump_col)
 endfunction
 " }}}
 
@@ -294,8 +298,8 @@ endfunction
 function! core#DoReplace(ord, motion)
   function! DoReplace(...)
     call core#DoCharMotion(a:1, a:2)
-    echo 'Enter replacement character: '
-    execute 'normal r' . nr2char(getchar())
+    execute 'normal r' . input( 'Enter replacement character: ')
+    normal :<c-u>
   endfunction
   call DoAndGoBack(
         \ function('DoReplace', [a:ord, a:motion])
