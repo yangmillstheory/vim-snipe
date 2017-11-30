@@ -61,8 +61,8 @@ Cut `x`
 ![x](https://user-images.githubusercontent.com/2729079/33358650-b9777c34-d47e-11e7-842a-3756cda89ddc.gif)
 
 ```vim
-nmap <leader><leader>> <Plug>(snipe-f-x)
-nmap <leader><leader>< <Plug>(snipe-F-x)
+nmap <leader><leader>x <Plug>(snipe-f-x)
+nmap <leader><leader>X <Plug>(snipe-F-x)
 ```
 
 Replace `r`
@@ -72,19 +72,8 @@ Replace `r`
 ![r](https://user-images.githubusercontent.com/2729079/33358695-fa0d6736-d47e-11e7-95f4-6850520498c6.gif)
 
 ```vim
-nmap <leader><leader>. <Plug>(snipe-f-r)
-nmap <leader><leader>, <Plug>(snipe-F-r)
-```
-
-Substitute `s`
-
-> Substitute starting from "p"
-
-![i](https://user-images.githubusercontent.com/2729079/33358804-bdf2bb06-d47f-11e7-99fa-b4249e75a1dd.gif)
-
-```vim
-nmap <leader><leader>+ <Plug>(snipe-f-s)
-nmap <leader><leader>- <Plug>(snipe-F-s)
+nmap <leader><leader>r <Plug>(snipe-f-r)
+nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
 ### TODO
