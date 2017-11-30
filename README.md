@@ -2,9 +2,18 @@
 
 **Warning: this is a work in progress!**
 
-### Getting started
+### Installing
 
-Character motions
+If you use a plugin manager such as [vim-plug](https://github.com/junegunn/vim-plug)
+this is as simple as
+
+```vim
+Plug 'yangmillstheory/vim-snipe'
+```
+
+### Usage
+
+*Character motions*
 
 > Jump forward to an "e"
 
@@ -17,7 +26,7 @@ nmap <leader><leader>T <Plug>(snipe-T)
 nmap <leader><leader>t <Plug>(snipe-t)
 ```
 
-Word motions
+*Word motions*
 
 > Jump to a previous start of word
 
@@ -34,7 +43,7 @@ nmap <leader><leader>ge <Plug>(snipe-ge)
 nmap <leader><leader>gE <Plug>(snipe-gE)
 ```
 
-Swap `xp`
+*Swap `xp`*
 
 > Fix the typo in "croe"
 
@@ -45,7 +54,7 @@ nmap <leader><leader>] <Plug>(snipe-f-xp)
 nmap <leader><leader>[ <Plug>(snipe-f-xp)
 ```
 
-Cut `x`
+*Cut `x`*
 
 > Cut an extra `,`
 
@@ -56,7 +65,7 @@ nmap <leader><leader>x <Plug>(snipe-f-x)
 nmap <leader><leader>X <Plug>(snipe-F-x)
 ```
 
-Replace `r`
+*Replace `r`*
 
 > Replace a previous "o"
 
@@ -69,25 +78,25 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 ### TODO
 
-* [ ] visual mode
-* [ ] operator mode
 * [ ] docs
 
 ### FAQ
 
 > But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
 
-[It does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+No, and [it does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+
+> Why didn't you extend it instead?
 
 After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant
-to extend.  So, I'm writing my own implementation to add some different features and solve my own problems.
+to extend.
 
 To be fair, [the core algorithm is almost the same](https://github.com/easymotion/vim-easymotion/pull/359).
 
-> How is it different from `vim-easymotion`?
+> How is it different?
 
 All motions are constrained on `line('.')`. This is both more natural and more performant, and with `set relativenumber`, there's
 no need to scan the entire buffer for `b`, `e`, `w` and friends.
 
-There ~are~ will be motions for targeted insertions, cuts, and swaps.
+There are will be motions for targeted insertions, cuts, and swaps.
 
