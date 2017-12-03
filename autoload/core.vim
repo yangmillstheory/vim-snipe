@@ -9,23 +9,6 @@ let s:forward_motions = {
       \  'e': 1,
       \  'E': 1,
       \}
-let s:include_motions = {'f': 1, 'F': 1}
-let s:char_motions = {
-      \  'f': 1,
-      \  'F': 1,
-      \  't': 1,
-      \  'T': 1,
-      \}
-let s:word_motions = {
-      \  'w': 1,
-      \  'W': 1,
-      \  'e': 1,
-      \  'E': 1,
-      \  'b': 1,
-      \  'B': 1,
-      \  'ge': 1,
-      \  'gE': 1,
-      \}
 let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
 " }}}
 
@@ -105,44 +88,36 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
+function! s:GetCharHits(motion, target)
+  let hits = []
+
   let start_lnum = line('.')
   let start_cnum = col('.')
-  let hits = []
-  let flags = ''
-  if !a:is_forward
-    let flags .= 'b'
-  endif
-  while 1
-    let [lnum, cnum] = searchpos(
-          \  a:pattern,
-          \  flags,
-          \  line('.')
-          \)
-    if lnum == 0 && cnum == 0
-      " no more hits
-      break
-    elseif foldclosed(lnum) != -1
-      " skip folded lines
-      continue
-    elseif lnum != start_lnum
-      throw 'hit on ' . join([lnum, cnum], ',') . ' is on wrong '
-            \'line, expected lnum ' . start_lnum
-    endif
 
-    if !a:is_inclusive
-      if a:is_forward
-        let cnum -= 1
-      else
-        let cnum += 1
-      endif
+  if foldclosed(start_lnum)
+    normal! zo
+    call cursor(start_lnum, start_cnum)
+  endif
+
+  let first_pass = 1
+  let prev_cnum = start_cnum
+  while 1
+    let cmd = first_pass
+          \ ? a:motion . a:target
+          \ : ';'
+    execute 'keepjumps normal! ' . cmd
+    let next_cnum = col('.')
+    if next_cnum == prev_cnum
+      break
+    else
+      call add(hits, next_cnum)
     endif
-    call add(hits, cnum)
+    let [first_pass, prev_cnum] = [0, next_cnum]
   endwhile
-  call cursor(start_lnum, start_cnum )
+
+  call cursor(start_lnum, start_cnum)
   return hits
 endfunction
-" }}}
 
 function! s:SafeSetLine(lnum, line) " {{{
   try | silent undojoin | catch | endtry
@@ -211,11 +186,7 @@ function! core#DoCharMotion(motion, mode) " {{{
   " there was nowhere to jump to or the jump was cancelled
   let ord = s:GetInput( 'Enter target character: ')
   if ord == s:esc_ord | return 0 | endif
-  let hits = s:GetCharHits(
-        \  '\C' . escape(nr2char(ord), '.$^~'),
-        \  has_key(s:forward_motions, a:motion),
-        \  has_key(s:include_motions, a:motion)
-        \)
+  let hits = s:GetCharHits(a:motion, nr2char(ord))
   if len(hits) == 0
     return 0
   endif
