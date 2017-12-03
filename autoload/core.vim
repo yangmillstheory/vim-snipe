@@ -219,7 +219,6 @@ function! s:GetWordHits(motion) " {{{
       break
     endif
   endwhile
-  echom orig_curpos[2]
   call setpos('.', orig_curpos)
   return hits
 endfunction
