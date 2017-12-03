@@ -106,8 +106,8 @@ endfunction
 " }}}
 
 function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
-  let orig_lnum = line('.')
-  let orig_cnum = col('.')
+  let start_lnum = line('.')
+  let start_cnum = col('.')
   let hits = []
   let flags = ''
   if !a:is_forward
@@ -125,9 +125,9 @@ function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
     elseif foldclosed(lnum) != -1
       " skip folded lines
       continue
-    elseif lnum != orig_lnum
+    elseif lnum != start_lnum
       throw 'hit on ' . join([lnum, cnum], ',') . ' is on wrong '
-            \'line, expected lnum ' . orig_lnum
+            \'line, expected lnum ' . start_lnum
     endif
 
     if !a:is_inclusive
@@ -139,7 +139,7 @@ function! s:GetCharHits(pattern, is_forward, is_inclusive) " {{{
     endif
     call add(hits, cnum)
   endwhile
-  call cursor(orig_lnum, orig_cnum )
+  call cursor(start_lnum, start_cnum )
   return hits
 endfunction
 " }}}
