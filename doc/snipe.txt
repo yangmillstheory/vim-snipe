@@ -1,0 +1,98 @@
+*snipe.txt*  Fast linewise motions and edits
+            _            ~
+  ___ _ __ (_)_ __   ___ ~
+ / __| '_ \| | '_ \ / _ \~
+ \__ \ | | | | |_) |  __/~
+ |___/_| |_|_| .__/ \___|~
+             |_|         ~
+
+Author:  Victor Alvarez <v.alvarez312@gmail.com>
+Source:  https://www.github.com/yangmillstheory/vim-snipe
+License: MIT (see |snipe-license|)
+
+====================================================================
+CONTENTS                                                   *snipe-toc*
+
+  1. Usage ............................................. |snipe-usage|
+  2. API ................................................. |snipe-api|
+  3. License ......................................... |snipe-license|
+  4. Contributing .................................... |snipe-contrib|
+  5. Credits ......................................... |snipe-credits|
+
+====================================================================
+USAGE                                                   *snipe-usage*
+
+There are two classes of problem that this plugin aims to solve:
+
+  1. Repetitive linewise motions
+  2. Typos made in Insert mode
+
+Usage therefore falls into two categories. (Note that all actions
+and motions are constrained to be on the same line. Yes, this is
+intentional.)
+
+  1. Jumping to a token or word boundary in Normal, Visual, or
+     Operator-pending mode
+  2. Fixing typos
+
+The plugin API is exposed via "named key sequences", which you are
+expected to provide mappings to.
+
+To understand why it's done this way, see
+
+  https://whileimautomaton.net/2008/09/27022735
+>
+Example setup in `~/.vimrc`: >
+
+  map <leader><leader>F <Plug>(snipe-F)
+  map <leader><leader>f <Plug>(snipe-f)
+  map <leader><leader>T <Plug>(snipe-T)
+  map <leader><leader>t <Plug>(snipe-t)
+
+  map <leader><leader>w <Plug>(snipe-w)
+  map <leader><leader>W <Plug>(snipe-W)
+  map <leader><leader>e <Plug>(snipe-e)
+  map <leader><leader>E <Plug>(snipe-E)
+  map <leader><leader>b <Plug>(snipe-b)
+  map <leader><leader>B <Plug>(snipe-B)
+  map <leader><leader>ge <Plug>(snipe-ge)
+  map <leader><leader>gE <Plug>(snipe-gE)
+
+  nmap <leader><leader>] <Plug>(snipe-f-xp)
+  nmap <leader><leader>[ <Plug>(snipe-F-xp)
+  nmap <leader><leader>x <Plug>(snipe-f-x)
+  nmap <leader><leader>X <Plug>(snipe-F-x)
+  nmap <leader><leader>r <Plug>(snipe-f-r)
+  nmap <leader><leader>R <Plug>(snipe-F-r)
+<
+====================================================================
+API                                                        *snipe-api*
+
+Character motions
+
+  |snipe-f| - jump forward to a token
+  |snipe-t| - jump forward until a token
+  |snipe-F| - jump backward to a token
+  |snipe-T| - jump backward until a token
+
+Word motions
+
+  |snipe-w|    - jump forward to a <word>
+  |snipe-W|    - jump forward to a <WORD>
+  |snipe-e|    - jump forward to the end of a <word>
+  |snipe-E|    - jump forward to the end of a <WORD>
+  |snipe-b|    - jump backward to the start of a <word>
+  |snipe-B|    - jump backward to the start of a <WORD>
+  |snipe-ge|   - jump backward to the end of a <word>
+  |snipe-gE|   - jump backward to the end of a <WORD>
+
+Editing
+
+  |snipe-f-xp| - swap a token in front of the cursor
+  |snipe-F-xp| - swap a token behind the cursor
+  |snipe-f-x|  - cut a token in front of the cursor into the Black hole
+  |snipe-F-x|  - cut a token behind the cursor into Black hole
+  |snipe-f-r|  - replace a token ahead of the cursor with another token
+  |snipe-F-r|  - replace a token behind the cursor with another token
+
+====================================================================
