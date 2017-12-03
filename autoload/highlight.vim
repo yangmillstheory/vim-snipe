@@ -4,7 +4,7 @@ let s:hl1_group_colors = {
     \ , 'cterm256': ['NONE', '7'       , 'bold']
     \ , 'cterm'   : ['NONE', '7'       , 'bold']
     \ }
-let g:smart_motion_hl1_group = 'SmartMotionHL1'
+let g:snipe_hl1_group = 'SmartMotionHL1'
 
 function! s:InitializeHLGroup(hl_group_name, colors) " TODO: understand me! {{{
   let default_hl_group_name = a:hl_group_name . 'Default'
@@ -24,7 +24,7 @@ endfunction " }}}
 
 function! highlight#InitializeHLGroups()
   " wrapper function that exists to provide further highlighting
-  call <SID>InitializeHLGroup(g:smart_motion_hl1_group, s:hl1_group_colors)
+  call <SID>InitializeHLGroup(g:snipe_hl1_group, s:hl1_group_colors)
 endfunction
 " }}}
 

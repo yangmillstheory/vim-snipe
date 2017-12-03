@@ -178,7 +178,7 @@ function! s:GetJumpCol(jump_tree) " {{{
           \hl_line, '\%' . jump_col . 'c.',
           \jump_seq . repeat(' ', hit_len - seq_len),
           \'')
-    call add(hl_ids, matchaddpos(g:smart_motion_hl1_group, [[lnum, jump_col]]))
+    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[lnum, jump_col]]))
   endfor
 
   call s:SafeSetLine(lnum, hl_line)
