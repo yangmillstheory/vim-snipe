@@ -94,7 +94,7 @@ function! s:GetCharHits(motion, target) " {{{
   let start_lnum = line('.')
   let start_cnum = col('.')
 
-  if foldclosed(start_lnum) != 1
+  if foldclosed(start_lnum) != -1
     normal! zo
     call cursor(start_lnum, start_cnum)
   endif
