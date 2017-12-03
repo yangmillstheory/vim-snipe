@@ -88,7 +88,7 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! s:GetCharHits(motion, target)
+function! s:GetCharHits(motion, target) " {{{
   let hits = []
 
   let start_lnum = line('.')
@@ -118,6 +118,7 @@ function! s:GetCharHits(motion, target)
   call cursor(start_lnum, start_cnum)
   return hits
 endfunction
+""" }}}
 
 function! s:SafeSetLine(lnum, line) " {{{
   try | silent undojoin | catch | endtry
