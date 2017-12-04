@@ -2,7 +2,7 @@
 
 > Fast linewise motions and edits
 
-### Why did I write this?
+### Why?
 
 1. I want to minimize repetition when correcting typing mistakes on the same line.
 
