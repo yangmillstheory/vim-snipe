@@ -4,15 +4,15 @@
 
 ### Why?
 
-1. I want to minimize repetition when correcting typing mistakes on the same line.
+**1. I want to minimize repetition when correcting typing mistakes on the same line.**
 
-Since I'm not an amazing typist, I make mistakes often enough to make this worth automating (in fact, it happened while writing this line).
+Since I'm not an amazing typist, I make mistakes often enough to make this worth automating (in fact, I made a few mistakes while writing this line).
 
-2. I don't like the `;` and `,` repetition when using linewise motions.
+**2. I don't like the `;` and `,` repetition when using linewise motions.**
 
 I almost always know where I want to go, but I'm forced to navigate incrementally to that place.
 
-3. There aren't any plugins with the same feature set.
+**3. There aren't any plugins with the same feature set.**
 
 The two plugins with the most overlap in functionality are
 
