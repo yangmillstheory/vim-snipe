@@ -6,7 +6,7 @@
 
 1. I want to minimize repetition when correcting typing mistakes on the same line.
 
-Since I'm not an amazing typist, this happens often enough to be worth automating (in fact, it happened while writing this line).
+Since I'm not an amazing typist, I make mistakes often enough to make this worth automating (in fact, it happened while writing this line).
 
 2. I don't like the `;` and `,` repetition when using linewise motions.
 
