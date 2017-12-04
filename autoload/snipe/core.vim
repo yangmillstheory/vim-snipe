@@ -171,7 +171,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   let modified = &modified
   call s:SafeSetLine(lnum, hl_line)
 
-  let ord_pressed = getchar()
+  let ord_pressed = s:GetInput('Enter target: ')
   let key_pressed = nr2char(ord_pressed)
 
   for hl_id in hl_ids | call matchdelete(hl_id) | endfor
