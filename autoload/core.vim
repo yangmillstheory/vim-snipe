@@ -16,14 +16,16 @@ let s:forward_motions = {
       \  'e': 1,
       \  'E': 1,
       \}
-let s:jump_tokens = get(g:, 'snipe_jump_tokens', 'asdfghklqwertyuiopzxcvbnm')
+if !exists('g:snipe_jump_tokens')
+  let g:snipe_jump_tokens = 'asdfghklqwertyuiopzxcvbnm'
+endif
 " }}}
 
 function! s:GetHitCounts(hits_rem) " {{{
-  " returns a list corresponding to s:jump_tokens; each
+  " returns a list corresponding to g:snipe_jump_tokens; each
   " count represents how many hits are in the subtree
   " rooted at the corresponding jump token
-  let n_jump_tokens = len(s:jump_tokens)
+  let n_jump_tokens = len(g:snipe_jump_tokens)
   let n_hits = repeat([0], n_jump_tokens)
   let hits_rem = a:hits_rem
 
@@ -80,7 +82,7 @@ function! s:GetJumpTree(hits) " {{{
   let i = 0
   let j = 0
   for n_children in s:GetHitCounts(len(a:hits))
-    let node = s:jump_tokens[j]
+    let node = g:snipe_jump_tokens[j]
     if n_children == 1
       let tree[node] = a:hits[i]
     elseif n_children > 1
