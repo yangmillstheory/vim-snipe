@@ -16,10 +16,10 @@ There aren't any plugins with the same feature set. The two plugins with the mos
 only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
 
 2 also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354).
-It's also monolithic, sprawling, and painful to extend. See [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+It's also monolithic, sprawling, and (IMHO) painful to extend; see [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
 for more discussion.
 
-However, I'd like to give credit to `vim-easymotion`, as I've borrowed some core functionality and logic:
+However, I'd like to give credit to `vim-easymotion`, having borrowed some core functionality and logic:
 
 * highlighting initialization
 * core functionality for building the jump tree
