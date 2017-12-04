@@ -12,7 +12,7 @@ I make mistakes often enough to make this worth automating - in fact, I made a f
 
 I almost always know where I want to go, but I'm forced to navigate incrementally to that place.
 
-**3. There aren't any plugins with the same feature set.**
+**3. There aren't any plugins containing or focused on the same feature set.**
 
 The two plugins with the most overlap in functionality are
 
