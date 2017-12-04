@@ -58,7 +58,7 @@ see
 
   https://github.com/easymotion/vim-easymotion/issues/354
 >
-It's also monolithic, sprawling, and (IMHO) painful to extend. See
+It's also sprawling and (IMHO) painful to extend. See
 
   https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/
 
@@ -68,7 +68,7 @@ However, I'd like to give credit `vim-easymotion`, having borrowed
 some core functionality and logic:
 
   * highlighting initialization
-  * core functionality for building the jump tree
+  * algorithm for building the jump tree
 
 >
 ====================================================================
