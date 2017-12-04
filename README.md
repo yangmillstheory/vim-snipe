@@ -5,8 +5,8 @@
 Provides
 
 1. Extensions of `f`, `F`, `t`, `T`, `w`, `W`, `b`, `B` and friends to navigate with one keystrokes and minimal cognitive load
-    * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding tedium
-2. Ways to fix common typos on the same line, using swaps (`xp`), replacement (`r`), and cuts (`x`)
+    * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding manual counting
+2. Fast ways to fix common typos on the same line, using swaps (`xp`), replacement (`r`), and cuts (`x`)
 
 See [motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for more.
 
