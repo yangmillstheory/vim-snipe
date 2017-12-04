@@ -5,12 +5,16 @@
 ### Why did I write this?
 
 1. I want to minimize repetition when correcting typing mistakes on the same line.
+
+Since I'm not an amazing typist, this happens often enough to be worth automating (in fact, it happened while writing this line).
+
 2. I don't like the `;` and `,` repetition when using linewise motions.
+3. There aren't any plugins with the same feature set.
 
-There aren't any plugins with the same feature set. The two plugins with the most overlap in functionality are
+The two plugins with the most overlap in functionality are
 
-1. [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
-2. [vim-easymotion](https://github.com/easymotion/vim-easymotion)
+* [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
+* [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 
 1 is no longer active, and is a simple fork of 2. While it also constrains motions to `line('.')`, it
 only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
