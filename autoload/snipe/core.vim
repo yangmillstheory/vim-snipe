@@ -130,6 +130,7 @@ endfunction
 """ }}}
 
 function! s:SafeSetLine(lnum, line) " {{{
+  " note: this modifies the buffer
   try | silent undojoin | catch | endtry
   call setline(a:lnum, a:line)
   redraw
