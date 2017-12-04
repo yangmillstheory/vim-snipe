@@ -29,6 +29,10 @@ Plug 'yangmillstheory/vim-snipe'
 
 The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak accordingly for your plugin manager.
 
+### Documentation
+
+`:h snipe.txt`
+
 ### Usage
 
 Note that all motions below (except cutting, swapping, and replacing) work in character, visual and operator-pending modes.
@@ -87,10 +91,6 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
 ![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
-
-### Documentation
-
-`:h snipe.txt`
 
 ### FAQ
 
