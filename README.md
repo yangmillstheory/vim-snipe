@@ -19,14 +19,14 @@ The two plugins with the most overlap in functionality are
 * [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
 * [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 
-`Stupid-Easymotion` constrains motions to `line('.')`, but it only provides mappings for `f`, `w`, and `W`. It also
+Stupid-Easymotion constrains motions to `line('.')`, but it only provides mappings for `f`, `w`, and `W`. It also
 hasn't seen any activity in a long time - 4+ years at the time of this writing.
 
-[`vim-easymotion` has a similarly incomplete API](https://github.com/easymotion/vim-easymotion/issues/354). It's also
+[vim-easymotion has a similarly incomplete API](https://github.com/easymotion/vim-easymotion/issues/354). It's also
 [sprawling](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/), and (IMHO)
 painful to extend.
 
-However, I'd like to give credit to `vim-easymotion`, having borrowed some core functionality and logic:
+However, I'd like to give credit to vim-easymotion, having borrowed some core functionality and logic:
 
 * highlighting initialization
 * clever algorithm for building the jump tree
