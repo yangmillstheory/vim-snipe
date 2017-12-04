@@ -179,12 +179,10 @@ function! s:GetJumpCol(jump_tree) " {{{
     set nomodified
   endif
 
-  if key_pressed == s:esc_ord
-    return
-  elseif empty(key_pressed)
-    throw 'Jump cancelled!'
+  if ord_pressed == s:esc_ord || empty(key_pressed)
+    echom 'Jump cancelled.' | return
   elseif !has_key(a:jump_tree, key_pressed)
-    throw 'Invalid key: ' . key_pressed
+    echom 'Invalid key: ' . key_pressed | return
   endif
 
   let node = a:jump_tree[key_pressed]
