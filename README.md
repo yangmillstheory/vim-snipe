@@ -41,7 +41,7 @@ map <leader><leader>t <Plug>(snipe-t)
 
 Example usage: there are three o's in front of the cursor, and we want to jump to the second one.
 
-![f](https://user-images.githubusercontent.com/2729079/33415309-7fc23138-d54a-11e7-9c02-a48e84ee4f8a.gif)
+![f](https://user-images.githubusercontent.com/2729079/33569729-742db2be-d8df-11e7-8cf3-99547c0edf2b.gif)
 
 #### Word motions
 
@@ -62,7 +62,7 @@ map <leader><leader>gE <Plug>(snipe-gE)
 
 Example usage: jump to the end of the 6th preceding `<word>`.
 
-![ge](https://user-images.githubusercontent.com/2729079/33415310-84d2ff72-d54a-11e7-8572-70e7292b123e.gif)
+![ge](https://user-images.githubusercontent.com/2729079/33569952-2e13b444-d8e0-11e7-950b-ad49c8b55eac.gif)
 
 #### Edits
 
@@ -79,7 +79,7 @@ nmap <leader><leader>[ <Plug>(snipe-f-xp)
 
 Usage: Change the typo "smlal" to "small" by swapping a previous instance of "l".
 
-![xp](https://user-images.githubusercontent.com/2729079/33415312-8af8eb64-d54a-11e7-920a-c14069b25704.gif)
+![xp](https://user-images.githubusercontent.com/2729079/33570040-6f51f8c6-d8e0-11e7-935b-627ce9197bef.gif)
 
 ##### Cut `x`
 
@@ -92,7 +92,7 @@ nmap <leader><leader>X <Plug>(snipe-F-x)
 
 Example usage: Change the typo "smoall" to "small" by cutting an instance of "o", which occurs before the cursor.
 
-![x](https://user-images.githubusercontent.com/2729079/33415315-8e209210-d54a-11e7-9dfa-b9a6701901d6.gif)
+![x](https://user-images.githubusercontent.com/2729079/33570110-a36d2e1e-d8e0-11e7-9dc4-4f70f13be3d6.gif)
 
 ##### Replace `r`
 
@@ -103,7 +103,8 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 Example usage: Change the typo "smell" to "small" by replacing an instance of "o", which occurs before the cursor.
 
-![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
+![r](https://user-images.githubusercontent.com/2729079/33570239-0f8556a8-d8e1-11e7-870c-b08fb8a54997.gif)
+
 
 ### Configuration
 
