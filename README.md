@@ -9,6 +9,9 @@
 Since I'm not an amazing typist, this happens often enough to be worth automating (in fact, it happened while writing this line).
 
 2. I don't like the `;` and `,` repetition when using linewise motions.
+
+I almost always know where I want to go, but I'm forced to navigate incrementally to that place.
+
 3. There aren't any plugins with the same feature set.
 
 The two plugins with the most overlap in functionality are

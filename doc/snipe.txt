@@ -70,7 +70,6 @@ some core functionality and logic:
   * highlighting initialization
   * algorithm for building the jump tree
 
->
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
 
