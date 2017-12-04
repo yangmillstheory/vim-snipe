@@ -244,4 +244,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ====================================================================
 CONTRIBUTING                                           *snipe-contrib*
 
+Fork https://www.github.com/yangmillstheory/vim-snipe.
+
 Pull requests are welcome; no special process is required.
