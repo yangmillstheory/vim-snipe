@@ -65,7 +65,7 @@ By default, the jump tokens are ordered starting with the home row
 own sequence by setting a global variable `g:snipe_jump_tokens`. For
 Dvorak users, e.g.
 >
-    let g:snipe_jump_tokens = 'AOEUIDHTNS'
+    let g:snipe_jump_tokens = 'aoeuidhtns'
 <
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*

@@ -113,7 +113,7 @@ By default, the jump tokens are ordered starting with the home row 'asdfghjkl', 
 You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
 
 ```vim
-let g:snipe_jump_tokens = 'AOEUIDHTNS'
+let g:snipe_jump_tokens = 'aoeuidhtns'
 ```
 
 ### Motivation
