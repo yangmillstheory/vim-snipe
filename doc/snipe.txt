@@ -15,11 +15,10 @@ CONTENTS                                                   *snipe-toc*
 
   1. Motivation .......................................... |snipe-why|
   2. Character motions .......................... |snipe-char-motions|
-  2. Word motions ............................... |snipe-word-motions|
-  2. Editing ......................................... |snipe-editing|
+  3. Word motions ............................... |snipe-word-motions|
+  4. Editing ......................................... |snipe-editing|
   3. License ......................................... |snipe-license|
   4. Contributing .................................... |snipe-contrib|
-  5. Credits ......................................... |snipe-credits|
 
 ====================================================================
 MOTIVATION                                                 *snipe-why*
