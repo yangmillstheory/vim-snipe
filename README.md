@@ -10,6 +10,8 @@ Provides
 
 See [motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for more.
 
+Inspired by [tmux-fingers](https://github.com/Morantron/tmux-fingers), [vimium](https://github.com/philc/vimium), and [vim-easymotion](https://github.com/easymotion/vim-easymotion/).
+
 ### Installing
 
 If you use a plugin manager this is as simple as
