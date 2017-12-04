@@ -106,11 +106,12 @@ After looking at the code, it's indeed monolithic, large, sprawling, and (in my 
 
 * [all common word motions are supported](https://github.com/easymotion/vim-easymotion/issues/354)
 * all motions are constrained on `line('.')`, because
-  * this is more natural
+  * this is more natural (there's no need to scan the whole buffer, given `set relativenumber`)
   * this is more performant
-  * there's no need to scan the entire buffer given `set relativenumber`
-* there are motions for singe-character replacements, cuts, and swaps - which is my most common use case
+* there are motions for single-character replacements, cuts, and swaps
 
 ### Contributing
 
-Pull requests are welcome; no special process is required.
+Pull requests are welcome; no special process is required. Currently there's no optionality for the highlighting format, for example.
+
+I'm sure there's also plenty of bugs which I won't have the time or inclination to always fix (try using the plugin when browsing Vim documentation, e.g.).
