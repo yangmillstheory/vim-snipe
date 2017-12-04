@@ -49,6 +49,10 @@ USAGE                                                    *snipe-usage*
 Provide mappings to named key sequences, see |snipe-char-motions|,
 |snipe-word-motions|, and |snipe-editing|.
 
+For reasons why the plugin API is exposed in this way, see
+
+    http://whileimautomaton.net/2008/09/27022735
+
 Triggering a mapping will highlight possible jump targets, so you
 can get to where you're going with a single keystroke and minimal
 cognitive load.
