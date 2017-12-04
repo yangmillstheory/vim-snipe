@@ -103,7 +103,7 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 Example usage: Change the typo "smell" to "small" by replacing an instance of "o", which occurs before the cursor.
 
-![r](https://user-images.githubusercontent.com/2729079/33570239-0f8556a8-d8e1-11e7-870c-b08fb8a54997.gif)
+![r](https://user-images.githubusercontent.com/2729079/33570877-20c3f6d4-d8e3-11e7-86c1-857c4a293b72.gif)
 
 
 ### Configuration
