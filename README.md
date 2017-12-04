@@ -102,7 +102,7 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 > Why did you constrain to `line('.')`?
 
-There's no need to scan the whole buffer, given `set relativenumber`. Thus, this approach is more performant and IMHO more natural Thus, this approach is more performant and IMHO more natural.
+There's no need to scan the whole buffer, given `set relativenumber`. Thus, this approach is more performant and IMHO more natural.
 
 ### Contributing
 
