@@ -39,7 +39,7 @@ map <leader><leader>T <Plug>(snipe-T)
 map <leader><leader>t <Plug>(snipe-t)
 ```
 
-Example usage: there are three o's in front of the cursor, and we want to jump to the second one
+Example usage: there are three o's in front of the cursor, and we want to jump to the second one.
 
 ![f](https://user-images.githubusercontent.com/2729079/33415309-7fc23138-d54a-11e7-9c02-a48e84ee4f8a.gif)
 
@@ -113,7 +113,7 @@ I make mistakes often enough to make this worth automating - in fact, I made a f
 
 **2. No more `;` and `,` repetition when using linewise motions.**
 
-I almost always know where I want to go, but I'm forced to navigate incrementally to that place.
+I almost always know where I want to go, but I'm forced to navigate incrementally to that place, or manually count the prefix of the motion (i.e. `5e`).
 
 **3. There aren't any plugins containing or focused on the same feature set.**
 
