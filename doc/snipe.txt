@@ -47,6 +47,8 @@ Use in Visual, Normal, or Operator-pending mode.
 |snipe-f|    |snipe-t|
 |snipe-F|    |snipe-T|
 
+Example mappings provided below.
+
 --------------------------------------------------------------------
 *snipe-f*
 
@@ -84,6 +86,8 @@ Use in Visual, Normal, or Operator-pending mode.
 |snipe-W|    |snipe-B|
 |snipe-e|    |snipe-ge|
 |snipe-E|    |snipe-gE|
+
+Example mappings provided below.
 
 --------------------------------------------------------------------
 *snipe-w*
@@ -148,6 +152,8 @@ Use in Normal mode.
 
 |snipe-f-xp|    |snipe-f-x|    |snipe-f-r|
 |snipe-F-xp|    |snipe-F-x|    |snipe-F-r|
+
+Example mappings provided below.
 
 --------------------------------------------------------------------
 *snipe-f-xp*
