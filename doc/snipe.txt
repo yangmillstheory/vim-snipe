@@ -68,7 +68,7 @@ However, I'd like to give credit `vim-easymotion`, having borrowed
 some core functionality and logic:
 
   * highlighting initialization
-  * algorithm for building the jump tree
+  * clever algorithm for building the jump tree
 
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
