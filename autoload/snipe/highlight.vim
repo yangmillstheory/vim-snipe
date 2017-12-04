@@ -1,8 +1,8 @@
 " highlighting; TODO: pull out of this file {{{
 let s:hl1_group_colors = {
-    \   'gui'     : ['NONE', '#fabd2f' , 'bold,underline']
-    \ , 'cterm256': ['NONE', '7'       , 'bold']
-    \ , 'cterm'   : ['NONE', '7'       , 'bold']
+    \   'gui'     : ['NONE', get(g:, 'snipe_highlight_gui_color',      '#fabd2f') , 'bold,underline']
+    \ , 'cterm256': ['NONE', get(g:, 'snipe_highlight_cterm256_color', '7')       , 'bold']
+    \ , 'cterm'   : ['NONE', get(g:, 'snipe_highlight_cterm_color',    '7')       , 'bold']
     \ }
 let g:snipe_hl1_group = 'SmartMotionHL1'
 
