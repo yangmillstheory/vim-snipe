@@ -72,11 +72,9 @@ default colors are #fabd2f for gui mode and 7 (light grey). To
 override these values, specify the the variables (for gui mode and
 terminal mode respectively):
 >
-    let g:snipe_highlight_gui_color = '#dfffaf'
-
+    let g:snipe_highlight_gui_color      = '#dfffaf'
     let g:snipe_highlight_cterm256_color = 'blue'
-
-    let g:snipe_highlight_cterm_color = 'red'
+    let g:snipe_highlight_cterm_color    = 'red'
 <
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
