@@ -23,6 +23,8 @@ CONTENTS                                                   *snipe-toc*
 ====================================================================
 MOTIVATION                                                 *snipe-why*
 
+This plugin aims to fix two problems.
+
 --------------------------------------------------------------------
 Repetitive linewise motions
 
@@ -37,7 +39,7 @@ fact, I made a few mistakes while writing this line.
 
 --------------------------------------------------------------------
 
-For more, see https://github.com/yangmillstheory/vim-snipe#why.
+For more, see https://github.com/yangmillstheory/vim-snipe#motivation
 
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
