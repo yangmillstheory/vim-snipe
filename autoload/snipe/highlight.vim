@@ -22,7 +22,7 @@ function! s:InitializeHLGroup(hl_group_name, colors) " TODO: understand me! {{{
   execute printf('hi default link %s %s', a:hl_group_name, default_hl_group_name)
 endfunction " }}}
 
-function! highlight#InitializeHLGroups()
+function! snipe#highlight#InitializeHLGroups()
   " wrapper function that exists to provide further highlighting
   call <SID>InitializeHLGroup(g:snipe_hl1_group, s:hl1_group_colors)
 endfunction

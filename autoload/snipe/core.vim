@@ -191,7 +191,7 @@ function! s:GetJumpCol(jump_tree) " {{{
 endfunction
 " }}}
 
-function! core#DoCharMotion(motion, mode) " {{{
+function! snipe#core#DoCharMotion(motion, mode) " {{{
   " returns 1 if the motion was successful, 0 in case
   " there was nowhere to jump to or the jump was cancelled
   let ord = s:GetInput( 'Enter target character: ')
@@ -234,7 +234,7 @@ function! s:GetWordHits(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoWordMotion(motion, mode) " {{{
+function! snipe#core#DoWordMotion(motion, mode) " {{{
   if !has_key(s:known_modes, a:mode)
     return
   endif
@@ -267,10 +267,10 @@ function! s:Jump(jump_col, mode) " {{{
 endfunction
 " }}}
 
-function! core#DoSwap(motion) " {{{
+function! snipe#core#DoSwap(motion) " {{{
   function! DoSwap(...)
     let saved = @"
-    let did_jump = core#DoCharMotion(a:1, '')
+    let did_jump = snipe#core#DoCharMotion(a:1, '')
     if did_jump
       normal xp
     endif
@@ -280,9 +280,9 @@ function! core#DoSwap(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoCut(motion) " {{{
+function! snipe#core#DoCut(motion) " {{{
   function! DoCut(...)
-    let did_jump = core#DoCharMotion(a:1, '')
+    let did_jump = snipe#core#DoCharMotion(a:1, '')
     if did_jump
       normal "_x
     endif
@@ -291,9 +291,9 @@ function! core#DoCut(motion) " {{{
 endfunction
 " }}}
 
-function! core#DoReplace(motion) " {{{
+function! snipe#core#DoReplace(motion) " {{{
   function! DoReplace(...)
-    let did_jump = core#DoCharMotion(a:1, '')
+    let did_jump = snipe#core#DoCharMotion(a:1, '')
     if !did_jump
       return
     endif
