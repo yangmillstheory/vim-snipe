@@ -20,13 +20,9 @@ Plug 'yangmillstheory/vim-snipe'
 
 The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak accordingly for your plugin manager.
 
-### Docs
-
-`:h snipe.txt`
-
 ### Usage and examples
 
-The plugin API is exposed via "named key sequences"; see [this write-up](http://whileimautomaton.net/2008/09/27022735) on why this is a good idea.
+The plugin API is exposed via "named key sequences"; see [this write-up](http://whileimautomaton.net/2008/09/27022735) on why this is a good idea. For more information, do `:h snipe.txt`.
 
 #### Character motions
 
@@ -38,6 +34,8 @@ map <leader><leader>f <Plug>(snipe-f)
 map <leader><leader>T <Plug>(snipe-T)
 map <leader><leader>t <Plug>(snipe-t)
 ```
+
+Example: there are three o's in front of the cursor, and we want to jump to the second one
 
 ![f](https://user-images.githubusercontent.com/2729079/33415309-7fc23138-d54a-11e7-9c02-a48e84ee4f8a.gif)
 
@@ -56,6 +54,8 @@ map <leader><leader>ge <Plug>(snipe-ge)
 map <leader><leader>gE <Plug>(snipe-gE)
 ```
 
+Example: jump to the end of the 6th preceding `<word>`.
+
 ![ge](https://user-images.githubusercontent.com/2729079/33415310-84d2ff72-d54a-11e7-8572-70e7292b123e.gif)
 
 #### Edits
@@ -69,6 +69,8 @@ nmap <leader><leader>] <Plug>(snipe-f-xp)
 nmap <leader><leader>[ <Plug>(snipe-f-xp)
 ```
 
+Example: Change the typo "smlal" to "small" by swapping a previous instance of "l".
+
 ![xp](https://user-images.githubusercontent.com/2729079/33415312-8af8eb64-d54a-11e7-920a-c14069b25704.gif)
 
 ##### Cut `x`
@@ -78,6 +80,8 @@ nmap <leader><leader>x <Plug>(snipe-f-x)
 nmap <leader><leader>X <Plug>(snipe-F-x)
 ```
 
+Example: Change the typo "smoall" to "small" by cutting an instance of "o", which occurs before the cursor.
+
 ![x](https://user-images.githubusercontent.com/2729079/33415315-8e209210-d54a-11e7-9dfa-b9a6701901d6.gif)
 
 ##### Replace `r`
@@ -86,6 +90,8 @@ nmap <leader><leader>X <Plug>(snipe-F-x)
 nmap <leader><leader>r <Plug>(snipe-f-r)
 nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
+
+Example: Change the typo "smell" to "small" by replacing an instance of "o", which occurs before the cursor.
 
 ![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
 
