@@ -17,7 +17,7 @@ let s:forward_motions = {
       \  'E': 1,
       \}
 if !exists('g:snipe_jump_tokens')
-  let g:snipe_jump_tokens = 'asdfghklqwertyuiopzxcvbnm'
+  let g:snipe_jump_tokens = 'asdfghjklqwertyuiopzxcvbnm'
 endif
 " }}}
 
