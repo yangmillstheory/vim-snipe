@@ -19,6 +19,11 @@ only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity i
 It's also monolithic, sprawling, and painful to extend. See [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
 for more discussion.
 
+However, I'd like to give credit to `vim-easymotion`, as I've borrowed some core functionality and logic:
+
+* highlighting initialization
+* core functionality for building the jump tree
+
 ### Installing
 
 If you use a plugin manager this is as simple as
