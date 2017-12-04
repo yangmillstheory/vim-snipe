@@ -299,7 +299,7 @@ function! core#DoReplace(motion) " {{{
     endif
     let ord = s:GetInput('Enter replacement: ')
     if ord == s:esc_ord | return | endif
-    execute 'normal r' . nr2char(ord)
+    execute 'normal! silent! r' . nr2char(ord)
   endfunction
   call DoAndGoBack(function('DoReplace', [a:motion]))
 endfunction
