@@ -147,7 +147,6 @@ endfunction
 
 function! s:GetJumpCol(jump_tree) " {{{
   " FIXME remove side effects, like highlighting, or rename
-  let modified = &modified
   let first_lvl = values(a:jump_tree)
   if len(first_lvl) == 1
     return first_lvl[0]
@@ -168,6 +167,7 @@ function! s:GetJumpCol(jump_tree) " {{{
     call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[lnum, jump_col]]))
   endfor
 
+  let modified = &modified
   call s:SafeSetLine(lnum, hl_line)
 
   let ord_pressed = getchar()
