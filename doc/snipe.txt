@@ -54,12 +54,12 @@ with the most overlap in functionality are
 with this effort in spirit (constraining motions to `line('.')`), it
 only provides mappings for `f`, `w`, and `W`.
 
-2. also has an incomplete API; see
+2. also has a similarly incomplete API at the time of this writing;
+see
 
   https://github.com/easymotion/vim-easymotion/issues/354
 >
-Furthermore, it's a monolithic and suffers from some code hygiene
-issues, and thus is a bit painful to extend. See
+It's also monolithic, sprawling, and painful to extend. See
 
   https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/
 
