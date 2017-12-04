@@ -9,8 +9,8 @@
 
 There aren't any plugins with the same feature set. The two plugins with the most overlap in functionality are
 
-  1. [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
-  2. [vim-easymotion](https://github.com/easymotion/vim-easymotion)
+1. [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
+2. [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 
 1. is no longer active, and is a simple fork of 2. While it agrees with this effort in spirit (constraining motions to `line('.')`), it
 only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
