@@ -24,9 +24,6 @@ CONTENTS                                                   *snipe-toc*
 ====================================================================
 MOTIVATION                                                 *snipe-why*
 
---------------------------------------------------------------------
-What problems does this plugin solve?
-
 There are two classes of problem that this plugin aims to solve:
 
   1. Repetitive linewise motions
@@ -47,9 +44,6 @@ To understand why it's done this way, see
 
   https://whileimautomaton.net/2008/09/27022735
 >
---------------------------------------------------------------------
-Why should this plugin exist?
-
 There aren't any plugins with the same feature set. The two plugins
 with the most overlap in functionality are
 
