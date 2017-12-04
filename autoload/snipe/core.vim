@@ -212,6 +212,7 @@ endfunction
 
 function! s:GetWordHits(motion) " {{{
   let hits = []
+  let orig_winview = winsaveview()
   let orig_curpos = getcurpos()
   if has_key(s:forward_motions, a:motion)
     normal G$
@@ -234,6 +235,7 @@ function! s:GetWordHits(motion) " {{{
     endif
   endwhile
   call setpos('.', orig_curpos)
+  call winrestview(orig_winview)
   return hits
 endfunction
 " }}}
