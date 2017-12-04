@@ -1,3 +1,10 @@
+if exists('loaded_snipe') " {{{
+    finish
+endif
+
+let loaded_snipe = 1
+" }}}
+
 " private variables {{{
 let s:known_modes = {'no': 1, 'v': 1, '': 1}
 let s:esc_ord = 27
