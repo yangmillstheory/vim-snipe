@@ -23,52 +23,21 @@ CONTENTS                                                   *snipe-toc*
 ====================================================================
 MOTIVATION                                                 *snipe-why*
 
-There are two classes of problem that this plugin aims to solve:
+--------------------------------------------------------------------
+Repetitive linewise motions
 
-  1. Repetitive linewise motions
-  2. Typos made in Insert mode
+You almost always know where you want to go, but you're forced to
+navigate incrementally to that place.
 
-Usage therefore falls into two categories. (Note that all actions
-and motions are constrained to be on the same line. Yes, this is
-intentional.)
+--------------------------------------------------------------------
+Fixing typos
 
-  1. Jumping to a token or word boundary in Normal, Visual, or
-     Operator-pending mode
-  2. Fixing typos
+I make mistakes often enough to make this worth automating - in
+fact, I made a few mistakes while writing this line.
 
-The plugin API is exposed via "named key sequences", which you are
-expected to provide mappings to.
+--------------------------------------------------------------------
 
-To understand why it's done this way, see
-
-  https://whileimautomaton.net/2008/09/27022735
->
-There aren't any plugins with the same feature set. The two plugins
-with the most overlap in functionality are
-
-  1. https://github.com/joequery/Stupid-EasyMotion
-  2. https://github.com/easymotion/vim-easymotion
-
-1. is no longer active, and is a simple fork of 2. While it agrees
-with this effort in spirit (constraining motions to `line('.')`), it
-only provides mappings for `f`, `w`, and `W`.
-
-2. also has a similarly incomplete API at the time of this writing;
-see
-
-  https://github.com/easymotion/vim-easymotion/issues/354
->
-It's also sprawling and (IMHO) painful to extend. See
-
-  https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/
-
-for more discussion.
-
-However, I'd like to give credit `vim-easymotion`, having borrowed
-some core functionality and logic:
-
-  * highlighting initialization
-  * clever algorithm for building the jump tree
+For more, see https://github.com/yangmillstheory/vim-snipe#why.
 
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
