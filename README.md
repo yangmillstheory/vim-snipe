@@ -4,9 +4,22 @@
 
 ### Why
 
-I'm a terrible typist, and wanted to minimize repetition when correcting my mistakes.
+1. I want to minimize repetition when correcting typing mistakes on the same line.
+2. I don't like the `;` and `,` repetition when using linewise motions.
 
-### Install
+There aren't any plugins with the same feature set. The two plugins with the most overlap in functionality are
+
+  1. [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
+  2. [vim-easymotion](https://github.com/easymotion/vim-easymotion)
+
+1. is no longer active, and is a simple fork of 2. While it agrees with this effort in spirit (constraining motions to `line('.')`), it
+only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
+
+2. also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354).
+It's also monolithic, sprawling, and painful to extend. See [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
+for more discussion.
+
+### Installing
 
 If you use a plugin manager this is as simple as
 
@@ -14,11 +27,11 @@ If you use a plugin manager this is as simple as
 Plug 'yangmillstheory/vim-snipe'
 ```
 
-The above example uses [vim-plug](https://github.com/junegunn/vim-plug).
+The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak accordingly for your plugin manager.
 
 ### Usage
 
-Note that all motions below (except, of course, cutting, swapping, and replacing) work in character-visual and operator-pending modes.
+Note that all motions below (except cutting, swapping, and replacing) work in character, visual and operator-pending modes.
 
 #### Character motions
 
@@ -30,7 +43,6 @@ map <leader><leader>t <Plug>(snipe-t)
 ```
 
 ![f](https://user-images.githubusercontent.com/2729079/33415309-7fc23138-d54a-11e7-9c02-a48e84ee4f8a.gif)
-
 
 #### Word motions
 
@@ -57,7 +69,6 @@ nmap <leader><leader>[ <Plug>(snipe-f-xp)
 
 ![xp](https://user-images.githubusercontent.com/2729079/33415312-8af8eb64-d54a-11e7-920a-c14069b25704.gif)
 
-
 #### Cut `x`
 
 ```vim
@@ -76,6 +87,10 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
 ![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
+
+### Documentation
+
+`:h snipe.txt`
 
 ### FAQ
 
@@ -96,6 +111,6 @@ After looking at the code, it's indeed monolithic, large, sprawling, and (in my 
   * there's no need to scan the entire buffer given `set relativenumber`
 * there are motions for singe-character replacements, cuts, and swaps - which is my most common use case
 
-### TODO
+### Contributing
 
-* [ ] `:h snipe`
+Pull requests are welcome; no special process is required.

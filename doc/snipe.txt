@@ -1,0 +1,248 @@
+*snipe.txt*  Fast linewise motions and edits
+            _            ~
+  ___ _ __ (_)_ __   ___ ~
+ / __| '_ \| | '_ \ / _ \~
+ \__ \ | | | | |_) |  __/~
+ |___/_| |_|_| .__/ \___|~
+             |_|         ~
+
+Author:  Victor Alvarez <v.alvarez312@gmail.com>
+Source:  https://www.github.com/yangmillstheory/vim-snipe
+License: MIT (see |snipe-license|)
+
+====================================================================
+CONTENTS                                                   *snipe-toc*
+
+  1. Motivation .......................................... |snipe-why|
+  2. Character motions .......................... |snipe-char-motions|
+  3. Word motions ............................... |snipe-word-motions|
+  4. Editing ......................................... |snipe-editing|
+  3. License ......................................... |snipe-license|
+  4. Contributing .................................... |snipe-contrib|
+
+====================================================================
+MOTIVATION                                                 *snipe-why*
+
+There are two classes of problem that this plugin aims to solve:
+
+  1. Repetitive linewise motions
+  2. Typos made in Insert mode
+
+Usage therefore falls into two categories. (Note that all actions
+and motions are constrained to be on the same line. Yes, this is
+intentional.)
+
+  1. Jumping to a token or word boundary in Normal, Visual, or
+     Operator-pending mode
+  2. Fixing typos
+
+The plugin API is exposed via "named key sequences", which you are
+expected to provide mappings to.
+
+To understand why it's done this way, see
+
+  https://whileimautomaton.net/2008/09/27022735
+>
+There aren't any plugins with the same feature set. The two plugins
+with the most overlap in functionality are
+
+  1. https://github.com/joequery/Stupid-EasyMotion
+  2. https://github.com/easymotion/vim-easymotion
+
+1. is no longer active, and is a simple fork of 2. While it agrees
+with this effort in spirit (constraining motions to `line('.')`), it
+only provides mappings for `f`, `w`, and `W`.
+
+2. also has a similarly incomplete API at the time of this writing;
+see
+
+  https://github.com/easymotion/vim-easymotion/issues/354
+>
+It's also monolithic, sprawling, and painful to extend. See
+
+  https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/
+
+for more discussion.
+>
+====================================================================
+CHARACTER MOTIONS                                 *snipe-char-motions*
+
+Use in Visual, Normal, or Operator-pending mode.
+
+|snipe-f|    |snipe-t|
+|snipe-F|    |snipe-T|
+
+--------------------------------------------------------------------
+*snipe-f*
+
+Jump forward to a token.
+>
+  map <leader><leader>f <Plug>(snipe-f)
+<
+--------------------------------------------------------------------
+*snipe-F*
+
+Jump backward to a token.
+>
+  map <leader><leader>F <Plug>(snipe-F)
+
+--------------------------------------------------------------------
+*snipe-t*
+
+Jump forward until a token.
+>
+  map <leader><leader>t <Plug>(snipe-t)
+
+--------------------------------------------------------------------
+*snipe-T*
+
+Jump backward until a token.
+>
+  map <leader><leader>F <Plug>(snipe-T)
+
+====================================================================
+WORD MOTIONS                                      *snipe-word-motions*
+
+Use in Visual, Normal, or Operator-pending mode.
+
+|snipe-w|    |snipe-b|
+|snipe-W|    |snipe-B|
+|snipe-e|    |snipe-ge|
+|snipe-E|    |snipe-gE|
+
+--------------------------------------------------------------------
+*snipe-w*
+
+Jump forward to a <word>.
+>
+  map <leader><leader>w <Plug>(snipe-w)
+<
+--------------------------------------------------------------------
+*snipe-W*
+
+Jump forward to a <WORD>.
+>
+  map <leader><leader>W <Plug>(snipe-W)
+<
+--------------------------------------------------------------------
+*snipe-e*
+
+Jump forward to the end of a <word>.
+>
+  map <leader><leader>e <Plug>(snipe-e)
+
+--------------------------------------------------------------------
+*snipe-E*
+
+Jump forward to the end of a <WORD>.
+>
+  map <leader><leader>E <Plug>(snipe-E)
+
+--------------------------------------------------------------------
+*snipe-b*
+
+Jump backward to the start of a <word>.
+>
+  map <leader><leader>b <Plug>(snipe-b)
+
+--------------------------------------------------------------------
+*snipe-B*
+
+Jump backward to the start of a <WORD>.
+>
+  map <leader><leader>B <Plug>(snipe-B)
+
+--------------------------------------------------------------------
+*snipe-ge*
+
+Jump backward to the end of a <word>.
+>
+  map <leader><leader>ge <Plug>(snipe-ge)
+
+--------------------------------------------------------------------
+*snipe-gE*
+
+Jump backward to the end of a <WORD>.
+>
+  map <leader><leader>gE <Plug>(snipe-gE)
+
+====================================================================
+EDITING                                                *snipe-editing*
+
+Use in Normal mode.
+
+|snipe-f-xp|    |snipe-f-x|    |snipe-f-r|
+|snipe-F-xp|    |snipe-F-x|    |snipe-F-r|
+
+--------------------------------------------------------------------
+*snipe-f-xp*
+
+Swap a token ahead of the cursor.
+>
+  map <leader><leader>] <Plug>(snipe-f-xp)
+
+--------------------------------------------------------------------
+*snipe-F-xp*
+
+Swap a token behind the cursor.
+>
+  map <leader><leader>[ <Plug>(snipe-F-xp)
+
+--------------------------------------------------------------------
+*snipe-f-x*
+
+Cut a token ahead of the cursor into the Black hole register.
+>
+  map <leader><leader>x <Plug>(snipe-f-x)
+
+--------------------------------------------------------------------
+*snipe-f-X*
+
+Cut a token behind the cursor into the Black hole register.
+>
+  map <leader><leader>X <Plug>(snipe-f-X)
+
+--------------------------------------------------------------------
+*snipe-f-r*
+
+Replace a token ahead of the cursor.
+>
+  map <leader><leader>r <Plug>(snipe-f-r)
+
+--------------------------------------------------------------------
+*snipe-F-r*
+
+Replace a token behind the cursor.
+>
+  map <leader><leader>R <Plug>(snipe-F-r)
+
+====================================================================
+LICENSE                                                *snipe-license*
+
+Copyright 2017 Victor Alvarez
+
+Permission is hereby granted, free of charge, to any person
+obtaining a copy of this software and associated documentation files
+(the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge,
+publish, distribute, sublicense, and/or sell copies of the Software,
+and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+====================================================================
+CONTRIBUTING                                           *snipe-contrib*
+
+Fork https://www.github.com/yangmillstheory/vim-snipe.
+
+Pull requests are welcome; no special process is required.
