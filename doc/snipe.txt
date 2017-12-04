@@ -253,3 +253,5 @@ CONTRIBUTING                                           *snipe-contrib*
 Fork https://www.github.com/yangmillstheory/vim-snipe.
 
 Pull requests are welcome; no special process is required.
+
+" vim:tw=78:ts=8:ft=help:norl:
