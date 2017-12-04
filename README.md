@@ -100,21 +100,9 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 ### FAQ
 
-> But doesn't [vim-easymotion](https://github.com/easymotion/vim-easymotion/) do the same thing?
+> Why did you constrain to `line('.')`?
 
-[No](https://github.com/easymotion/vim-easymotion/issues/354), and [it does too much.](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
-
-> But why didn't you extend it instead?
-
-After looking at the code, it's indeed monolithic, large, sprawling, and (in my opinion) painful and unpleasant to extend. However, [one of the core algorithms is similar](https://github.com/easymotion/vim-easymotion/pull/359).
-
-> How is it different?
-
-* [all common word motions are supported](https://github.com/easymotion/vim-easymotion/issues/354)
-* all motions are constrained on `line('.')`, because
-  * this is more natural (there's no need to scan the whole buffer, given `set relativenumber`)
-  * this is more performant
-* there are motions for single-character replacements, cuts, and swaps
+There's no need to scan the whole buffer, given `set relativenumber`. Thus, this approach is more performant and IMHO more natural Thus, this approach is more performant and IMHO more natural.
 
 ### Contributing
 
