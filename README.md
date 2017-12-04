@@ -20,9 +20,10 @@ The two plugins with the most overlap in functionality are
 * [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 
 1 is no longer active, and is a simple fork of 2. While it also constrains motions to `line('.')`, it
-only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
+only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while - 4+ years at the time of this writing.
 
-2 also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354). It's also sprawling and (IMHO) painful to extend; see [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/).
+2 also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354). It's also
+sprawling and (IMHO) painful to extend; see [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/).
 
 However, I'd like to give credit to `vim-easymotion`, having borrowed some core functionality and logic:
 
