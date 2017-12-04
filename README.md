@@ -105,6 +105,16 @@ Example usage: Change the typo "smell" to "small" by replacing an instance of "o
 
 ![r](https://user-images.githubusercontent.com/2729079/33415316-9181c618-d54a-11e7-80bb-2c72b34f3e11.gif)
 
+### Configuration
+
+By default, the jump tokens are ordered starting with the home row 'asdfghjkl', then 'qwertyuiop', then 'zxcvbnm'.
+
+You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
+
+```vim
+let g:snipe_jump_tokens = 'AOEUIDHTNS'
+```
+
 ### Motivation
 
 **1. Automate fixing typos on the same line.**
