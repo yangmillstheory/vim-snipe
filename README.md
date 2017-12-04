@@ -2,7 +2,7 @@
 
 > Fast linewise motions and edits
 
-### Why
+### Why did I write this?
 
 1. I want to minimize repetition when correcting typing mistakes on the same line.
 2. I don't like the `;` and `,` repetition when using linewise motions.
@@ -35,7 +35,7 @@ Plug 'yangmillstheory/vim-snipe'
 
 The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak accordingly for your plugin manager.
 
-### Documentation
+### Docs
 
 `:h snipe.txt`
 
@@ -103,6 +103,10 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 > Why did you constrain to `line('.')`?
 
 There's no need to scan the whole buffer, given `set relativenumber`. Thus, this approach is more performant and IMHO more natural.
+
+> But I've been getting by just fine without this!
+
+Cool, then you shouldn't use it. I use it everyday, so it serves me well, and hopefully I'm not the only one.
 
 ### Contributing
 
