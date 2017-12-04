@@ -8,6 +8,7 @@ let loaded_snipe = 1
 " private variables {{{
 let s:known_modes = {'no': 1, 'v': 1, '': 1}
 let s:esc_ord = 27
+let s:cr_ord = 13
 let s:forward_motions = {
       \  'f': 1,
       \  't': 1,
@@ -170,7 +171,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   let modified = &modified
   call s:SafeSetLine(lnum, hl_line)
 
-  let ord_pressed = getchar()
+  let ord_pressed = s:GetInput('Enter target: ')
   let key_pressed = nr2char(ord_pressed)
 
   for hl_id in hl_ids | call matchdelete(hl_id) | endfor
@@ -179,12 +180,10 @@ function! s:GetJumpCol(jump_tree) " {{{
     set nomodified
   endif
 
-  if key_pressed == s:esc_ord
-    return
-  elseif empty(key_pressed)
-    throw 'Jump cancelled!'
+  if ord_pressed == s:esc_ord || key_pressed ==# nr2char(s:cr_ord)
+    echom 'Jump cancelled.' | return
   elseif !has_key(a:jump_tree, key_pressed)
-    throw 'Invalid key: ' . key_pressed
+    echom 'Invalid key: ' . key_pressed | return
   endif
 
   let node = a:jump_tree[key_pressed]
