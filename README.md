@@ -12,10 +12,10 @@ There aren't any plugins with the same feature set. The two plugins with the mos
 1. [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
 2. [vim-easymotion](https://github.com/easymotion/vim-easymotion)
 
-1. is no longer active, and is a simple fork of 2. While it agrees with this effort in spirit (constraining motions to `line('.')`), it
+1 is no longer active, and is a simple fork of 2. While it agrees with this effort in spirit (constraining motions to `line('.')`), it
 only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a while.
 
-2. also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354).
+2 also has a similarly incomplete API at the time of this writing; see [this issue](https://github.com/easymotion/vim-easymotion/issues/354).
 It's also monolithic, sprawling, and painful to extend. See [this Reddit thread](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/)
 for more discussion.
 
