@@ -16,7 +16,7 @@ let s:forward_motions = {
       \  'e': 1,
       \  'E': 1,
       \}
-let s:jump_tokens = 'abcdefghijklmnopqrstuvwxyz'
+let s:jump_tokens = get(g:, 'snipe_jump_tokens', 'asdfghklqwertyuiopzxcvbnm')
 " }}}
 
 function! s:GetHitCounts(hits_rem) " {{{

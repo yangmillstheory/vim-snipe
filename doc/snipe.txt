@@ -14,11 +14,13 @@ License: MIT (see |snipe-license|)
 CONTENTS                                                   *snipe-toc*
 
   1. Motivation .......................................... |snipe-why|
-  2. Character motions .......................... |snipe-char-motions|
-  3. Word motions ............................... |snipe-word-motions|
-  4. Editing ......................................... |snipe-editing|
-  3. License ......................................... |snipe-license|
-  4. Contributing .................................... |snipe-contrib|
+  2. Usage ............................................. |snipe-usage|
+  3. Configuration .................................... |snipe-config|
+  4. Character motions .......................... |snipe-char-motions|
+  5. Word motions ............................... |snipe-word-motions|
+  6. Editing ......................................... |snipe-editing|
+  7. License ......................................... |snipe-license|
+  8. Contributing .................................... |snipe-contrib|
 
 ====================================================================
 MOTIVATION                                                 *snipe-why*
@@ -41,6 +43,26 @@ fact, I made a few mistakes while writing this line.
 
 For more, see https://github.com/yangmillstheory/vim-snipe#motivation
 
+====================================================================
+USAGE                                                    *snipe-usage*
+
+Provide mappings to named key sequences, see |snipe-char-motions|,
+|snipe-word-motions|, and |snipe-editing|.
+
+Triggering a mapping will highlight possible jump targets, so you
+can get to where you're going with a single keystroke and minimal
+cognitive load.
+
+====================================================================
+CONFIGURATION                                           *snipe-config*
+
+By default, the jump tokens are ordered starting with the home row
+{asdfghjkl}, then {qwertyuiop}, then {zxcvbnm}. You can provide your
+own sequence by setting a global variable `g:snipe_jump_tokens`. For
+Dvorak users, e.g.
+>
+    let g:snipe_jump_tokens = 'AOEUIDHTNS'
+<
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
 
