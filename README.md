@@ -113,7 +113,7 @@ By default, the jump tokens are ordered starting with the home row 'asdfghjkl', 
 You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
 
 ```vim
-let g:snipe_jump_tokens = 'AOEUIDHTNS'
+let g:snipe_jump_tokens = 'aoeuidhtns'
 ```
 
 ### Motivation
@@ -122,7 +122,7 @@ let g:snipe_jump_tokens = 'AOEUIDHTNS'
 
 I make mistakes often enough to make this worth automating - in fact, I made a few mistakes while writing this line.
 
-**2. No more `;` and `,` repetition when using linewise motions.**
+**2. No more `;` and `,` repetition or counting prefixes for linewise motions.**
 
 I almost always know where I want to go, but I'm forced to navigate incrementally to that place, or manually count the prefix of the motion (i.e. `5e`).
 
