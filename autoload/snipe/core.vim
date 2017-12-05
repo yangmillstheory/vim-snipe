@@ -166,7 +166,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   call sort(jump_items, 'SortAscByJumpCol')
   let col_offset = 0
   for [jump_seq, jump_col] in jump_items
-		" this loop builds the highlighted line, adding highlights from left to right;
+    " this loop builds the highlighted line, adding highlights from left to right;
     " previous multi-token jump sequences are accounted for by tracking col_offset.
     let len_jump_seq = strlen(jump_seq)
     let hl_start_col = jump_col + col_offset
