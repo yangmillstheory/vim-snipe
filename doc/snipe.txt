@@ -60,6 +60,9 @@ cognitive load.
 ====================================================================
 CONFIGURATION                                           *snipe-config*
 
+--------------------------------------------------------------------
+                                                *g:snipe_jump_tokens*
+
 By default, the jump tokens are ordered starting with the home row
 {asdfghjkl}, then {qwertyuiop}, then {zxcvbnm}. You can provide your
 own sequence by setting a global variable `g:snipe_jump_tokens`. For
@@ -67,6 +70,11 @@ Dvorak users, e.g.
 >
     let g:snipe_jump_tokens = 'aoeuidhtns'
 <
+--------------------------------------------------------------------
+                                         *g:snipe_highlight_gui_color*
+                                    *g:snipe_highlight_cterm256_color*
+                                       *g:snipe_highlight_cterm_color*
+
 The jump tokens are highlighted in a configurable color. The
 default colors are #fabd2f for gui mode and 7 (light grey). To
 override these values, specify the the variables (for gui mode and
@@ -75,6 +83,29 @@ terminal mode respectively):
     let g:snipe_highlight_gui_color      = '#dfffaf'
     let g:snipe_highlight_cterm256_color = 'blue'
     let g:snipe_highlight_cterm_color    = 'red'
+
+--------------------------------------------------------------------
+                                       *g:snipe_display_full_jump_seq*
+
+If a motion has more possibilities than the number of jump tokens
+specified by |g:snipe_jump_tokens|, then the sequence will contain
+multiple keystrokes. By default, it will only display the first
+keystroke, and display subsequent ones after the first keypress.
+However, you can override it by setting `g:snipe_display_full_jump_seq`:
+>
+    let g:snipe_display_full_jump_seq = 1
+<
+Doing so will show the full keystroke sequence, potentially shifting the
+column positions of the text in the display. For example, if
+`g:snipe_jump_tokens` is set to `'asd'`, and the current line is `" 12 34 56 78"`,
+then if you |snipe-w| from the beginning of the line, by default it will look
+like:
+>
+     a2 s4 d6 d8
+<
+With `g:snipe_display_full_jump_seq` set, it will look like:
+>
+     a2 s4 da6 ds8
 <
 ====================================================================
 CHARACTER MOTIONS                                 *snipe-char-motions*
