@@ -5,12 +5,16 @@
 Provides
 
 1. Extensions of `f`, `F`, `t`, `T`, `w`, `W`, `b`, `B` and friends to navigate with one keystroke and minimal cognitive load
-    * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding manual counting
+    * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding prefix counting
 2. Fast ways to fix common typos on the same line, using swaps (`xp`), replacements (`r`), and cuts (`x`)
 
-See [motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for more.
+Read [Motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for background.
 
-Inspired by [tmux-fingers](https://github.com/Morantron/tmux-fingers), [vimium](https://github.com/philc/vimium), and [vim-easymotion](https://github.com/easymotion/vim-easymotion/).
+Inspired by:
+
+* [tmux-fingers](https://github.com/Morantron/tmux-fingers)
+* [vimium](https://github.com/philc/vimium)
+* [vim-easymotion](https://github.com/easymotion/vim-easymotion/).
 
 ### Installing
 
@@ -39,7 +43,7 @@ map <leader><leader>T <Plug>(snipe-T)
 map <leader><leader>t <Plug>(snipe-t)
 ```
 
-Example usage: there are three o's in front of the cursor, and we want to jump to the second one.
+Example usage: We want to jump to the last "o" in front of the cursor, but there are several other "o"'s in the way.
 
 ![f](https://user-images.githubusercontent.com/2729079/33584714-80346e28-d915-11e7-875d-fa01d60389a7.gif)
 
@@ -60,7 +64,7 @@ map <leader><leader>ge <Plug>(snipe-ge)
 map <leader><leader>gE <Plug>(snipe-gE)
 ```
 
-Example usage: jump to the end of the 6th preceding `<word>`.
+Example usage: We want to jump to the end of "to".
 
 ![ge](https://user-images.githubusercontent.com/2729079/33569952-2e13b444-d8e0-11e7-950b-ad49c8b55eac.gif)
 
@@ -90,7 +94,7 @@ nmap <leader><leader>x <Plug>(snipe-f-x)
 nmap <leader><leader>X <Plug>(snipe-F-x)
 ```
 
-Example usage: Change the typo "smoall" to "small" by cutting an instance of "o", which occurs before the cursor.
+Example usage: Change the typo "smoall" to "small" by cutting an instance of "o".
 
 ![x](https://user-images.githubusercontent.com/2729079/33570110-a36d2e1e-d8e0-11e7-9dc4-4f70f13be3d6.gif)
 
@@ -101,19 +105,27 @@ nmap <leader><leader>r <Plug>(snipe-f-r)
 nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
-Example usage: Change the typo "smbll" to "small" by replacing an instance of "b", which occurs before the cursor.
+Example usage: Change the typo "smbll" to "small" by replacing an instance of "b".
 
 ![r](https://user-images.githubusercontent.com/2729079/33586877-69c799a2-d920-11e7-8286-55470dbbdb3c.gif)
 
 ### Configuration
 
-By default, the jump tokens are ordered starting with the home row 'asdfghjkl', then 'qwertyuiop', then 'zxcvbnm'.
-
-You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
+By default, the jump tokens are ordered starting with the home row 'asdfghjkl', then 'qwertyuiop', then 'zxcvbnm'. You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
 
 ```vim
 let g:snipe_jump_tokens = 'aoeuidhtns'
 ```
+
+You can also provide your own highlighting via 
+
+```vim
+let g:snipe_highlight_gui_color = '#fabd2f'
+let g:snipe_highlight_cterm256_color = '200'
+let g:snipe_highlight_cterm_color = 7'
+```
+
+These are used to build the highlighting group in [highlight.vim](https://github.com/yangmillstheory/vim-snipe/blob/master/autoload/snipe/highlight.vim) used when highlighting a jump.
 
 ### Motivation
 
@@ -123,7 +135,7 @@ I make mistakes often enough to make this worth automating - in fact, I made a f
 
 **2. No more `;` and `,` repetition when using linewise motions.**
 
-I almost always know where I want to go, but I'm forced to navigate incrementally to that place, or manually count the prefix of the motion (i.e. `5e`).
+I almost always know exactly where I want to go, but I'm forced to navigate incrementally to that place, or manually count the prefix of the motion (i.e. `5e`). Other times, I want to jump somewhere far in one direction, and it's more efficient to see the possible jump markers, instead of manually exploring (`wwwww`).
 
 **3. There aren't any plugins containing or focused on the same feature set.**
 
@@ -160,6 +172,4 @@ No, in some cases (i.e. a single hop to an adjacent word, or when the destinatio
 
 ### Contributing
 
-Pull requests are welcome; no special process is required. Currently there's no optionality for the highlighting format, for example.
-
-I'm sure there's also plenty of bugs which I won't have the time or inclination to always fix (try using the plugin when browsing Vim documentation, e.g.).
+Pull requests are welcome; no special process is required.
