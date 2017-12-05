@@ -158,12 +158,12 @@ function! s:GetJumpCol(jump_tree) " {{{
   let hl_ids = []
   let hl_line = orig_line
 
-  function! SortByJumpCol(x, y)
+  function! SortAscByJumpCol(x, y)
     return a:x[1] - a:y[1]
   endfunction
 
   let jump_items = items(jump_dict)
-  call sort(jump_items, 'SortByJumpCol')
+  call sort(jump_items, 'SortAscByJumpCol')
   let col_offset = 0
   for [jump_seq, jump_col] in jump_items
 		" this loop builds the highlighted line, adding highlights from left to right;
