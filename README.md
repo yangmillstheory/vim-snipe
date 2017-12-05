@@ -6,7 +6,7 @@ Provides
 
 1. Extensions of `f`, `F`, `t`, `T`, `w`, `W`, `b`, `B` and friends to navigate with one keystroke and minimal cognitive load
     * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding manual counting
-2. Fast ways to fix common typos on the same line, using swaps (`xp`), replacement (`r`), and cuts (`x`)
+2. Fast ways to fix common typos on the same line, using swaps (`xp`), replacements (`r`), and cuts (`x`)
 
 See [motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for more.
 
@@ -103,8 +103,7 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 Example usage: Change the typo "smell" to "small" by replacing an instance of "o", which occurs before the cursor.
 
-![r](https://user-images.githubusercontent.com/2729079/33570877-20c3f6d4-d8e3-11e7-86c1-857c4a293b72.gif)
-
+![r](https://user-images.githubusercontent.com/2729079/33586877-69c799a2-d920-11e7-8286-55470dbbdb3c.gif)
 
 ### Configuration
 
