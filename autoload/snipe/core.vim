@@ -157,15 +157,26 @@ function! s:GetJumpCol(jump_tree) " {{{
   let orig_line = getline(lnum)
   let hl_ids = []
   let hl_line = orig_line
-  for [jump_seq, jump_col] in items(jump_dict)
-    " https://github.com/yangmillstheory/vim-easymotion/blob/1e775c341eb6a0a4075b2dcb2475f7d10b876187/autoload/EasyMotion.vim#L989
-    let hit_len = strdisplaywidth(matchstr(orig_line, '\%' . jump_col . 'c.'))
-    let seq_len = strdisplaywidth(jump_seq)
-    let hl_line = substitute(
-          \hl_line, '\%' . jump_col . 'c.',
-          \jump_seq . repeat(' ', hit_len - seq_len),
-          \'')
-    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[lnum, jump_col]]))
+
+  function! SortByJumpCol(x, y)
+    return a:x[1] - a:y[1]
+  endfunction
+
+  let jump_items = items(jump_dict)
+  call sort(jump_items, 'SortByJumpCol')
+	let col_offset = 0
+  for [jump_seq, jump_col] in jump_items
+		" this loop builds the highlighted line, adding highlights from left to
+    " right. previous multi-token jump sequences are accounted for by tracking col_offset.
+    let len_jump_seq = strlen(jump_seq)
+		let hl_start_col = jump_col + col_offset
+		let hl_line = substitute(hl_line, '\%' . hl_start_col . 'c.', jump_seq, '')
+    let hl_cols = map(
+		\  range(hl_start_col, hl_start_col + len_jump_seq - 1),
+		\  '[' . lnum . ',v:val]'
+		\)
+    call add(hl_ids, matchaddpos(g:snipe_hl1_group, hl_cols))
+		let col_offset += len_jump_seq - 1
   endfor
 
   let modified = &modified
