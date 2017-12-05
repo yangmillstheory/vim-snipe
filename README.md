@@ -101,7 +101,7 @@ nmap <leader><leader>r <Plug>(snipe-f-r)
 nmap <leader><leader>R <Plug>(snipe-F-r)
 ```
 
-Example usage: Change the typo "smell" to "small" by replacing an instance of "o", which occurs before the cursor.
+Example usage: Change the typo "smbll" to "small" by replacing an instance of "b", which occurs before the cursor.
 
 ![r](https://user-images.githubusercontent.com/2729079/33586877-69c799a2-d920-11e7-8286-55470dbbdb3c.gif)
 
