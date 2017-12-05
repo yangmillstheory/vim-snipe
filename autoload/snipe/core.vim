@@ -169,14 +169,14 @@ function! s:GetJumpCol(jump_tree) " {{{
 		" this loop builds the highlighted line, adding highlights from left to right;
     " previous multi-token jump sequences are accounted for by tracking col_offset.
     let len_jump_seq = strlen(jump_seq)
-		let hl_start_col = jump_col + col_offset
-		let hl_line = substitute(hl_line, '\%' . hl_start_col . 'c.', jump_seq, '')
+    let hl_start_col = jump_col + col_offset
+    let hl_line = substitute(hl_line, '\%' . hl_start_col . 'c.', jump_seq, '')
     let hl_cols = map(
-		\  range(hl_start_col, hl_start_col + len_jump_seq - 1),
-		\  '[' . lnum . ',v:val]'
-		\)
+    \  range(hl_start_col, hl_start_col + len_jump_seq - 1),
+    \  '[' . lnum . ',v:val]'
+    \)
     call add(hl_ids, matchaddpos(g:snipe_hl1_group, hl_cols))
-		let col_offset += len_jump_seq - 1
+    let col_offset += len_jump_seq - 1
   endfor
 
   let modified = &modified
