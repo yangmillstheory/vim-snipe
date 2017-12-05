@@ -2,6 +2,8 @@
 
 > Fast linewise motions and edits
 
+![gif](https://media.giphy.com/media/UXzQDxF7TB1fO/giphy.gif)
+
 Provides
 
 1. Extensions of `f`, `F`, `t`, `T`, `w`, `W`, `b`, `B` and friends to navigate with one keystroke and minimal cognitive load
@@ -14,7 +16,7 @@ Inspired by:
 
 * [tmux-fingers](https://github.com/Morantron/tmux-fingers)
 * [vimium](https://github.com/philc/vimium)
-* [vim-easymotion](https://github.com/easymotion/vim-easymotion/).
+* [vim-easymotion](https://github.com/easymotion/vim-easymotion/)
 
 ### Installing
 
