@@ -41,7 +41,7 @@ map <leader><leader>t <Plug>(snipe-t)
 
 Example usage: there are three o's in front of the cursor, and we want to jump to the second one.
 
-![f](https://user-images.githubusercontent.com/2729079/33569729-742db2be-d8df-11e7-8cf3-99547c0edf2b.gif)
+![f](https://user-images.githubusercontent.com/2729079/33584714-80346e28-d915-11e7-875d-fa01d60389a7.gif)
 
 #### Word motions
 
