@@ -60,6 +60,9 @@ cognitive load.
 ====================================================================
 CONFIGURATION                                           *snipe-config*
 
+--------------------------------------------------------------------
+                                                *g:snipe_jump_tokens*
+
 By default, the jump tokens are ordered starting with the home row
 {asdfghjkl}, then {qwertyuiop}, then {zxcvbnm}. You can provide your
 own sequence by setting a global variable `g:snipe_jump_tokens`. For
@@ -67,6 +70,11 @@ Dvorak users, e.g.
 >
     let g:snipe_jump_tokens = 'aoeuidhtns'
 <
+--------------------------------------------------------------------
+                                         *g:snipe_highlight_gui_color*
+                                    *g:snipe_highlight_cterm256_color*
+                                       *g:snipe_highlight_cterm_color*
+
 The jump tokens are highlighted in a configurable color. The
 default colors are #fabd2f for gui mode and 7 (light grey). To
 override these values, specify the the variables (for gui mode and
