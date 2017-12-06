@@ -5,7 +5,7 @@
 ![gif](https://media.giphy.com/media/UXzQDxF7TB1fO/giphy.gif)
 
 1. Jump to a target on the same line with a single keystroke, no matter the distance
-2. Fix common typos using swaps, replacements, and cuts
+2. Fix common typos using swaps, replaces, and cuts
 
 [Read this for motivation.](https://blog.yangmillstheory.com/posts/vim-snipe#motivation)
 
