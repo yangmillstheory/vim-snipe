@@ -20,9 +20,6 @@ let s:forward_motions = {
 if !exists('g:snipe_jump_tokens')
   let g:snipe_jump_tokens = 'asdfghjklqwertyuiopzxcvbnm'
 endif
-if !exists('g:snipe_display_full_jump_seq')
-  let g:snipe_display_full_jump_seq = 0
-endif
 " }}}
 
 function! s:GetHitCounts(hits_rem) " {{{
@@ -167,22 +164,11 @@ function! s:GetJumpCol(jump_tree) " {{{
 
   let jump_items = items(jump_dict)
   call sort(jump_items, 'SortAscByJumpCol')
-  let col_offset = 0
   for [jump_seq, jump_col] in jump_items
     " this loop builds the highlighted line, adding highlights from left to right;
-    " previous multi-token jump sequences are accounted for by tracking col_offset.
-    if !g:snipe_display_full_jump_seq
-        let jump_seq = jump_seq[0]
-    endif
-    let len_jump_seq = strlen(jump_seq)
-    let hl_start_col = jump_col + col_offset
-    let hl_line = substitute(hl_line, '\%' . hl_start_col . 'c.', jump_seq, '')
-    let hl_cols = map(
-    \  range(hl_start_col, hl_start_col + len_jump_seq - 1),
-    \  '[' . lnum . ',v:val]'
-    \)
-    call add(hl_ids, matchaddpos(g:snipe_hl1_group, hl_cols))
-    let col_offset += len_jump_seq - 1
+    " multi-token jump sequences will only show the first token.
+    let hl_line = substitute(hl_line, '\%' . jump_col . 'c.', jump_seq[0], '')
+    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[lnum, jump_col]]))
   endfor
 
   let modified = &modified
