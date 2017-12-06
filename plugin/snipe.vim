@@ -45,6 +45,10 @@ nnoremap <script> <Plug>(snipe-f-x) :call snipe#core#DoCut('f')<CR>
 nnoremap <script> <Plug>(snipe-F-x) :call snipe#core#DoCut('F')<CR>
 nnoremap <script> <Plug>(snipe-f-r) :call snipe#core#DoReplace('f')<CR>
 nnoremap <script> <Plug>(snipe-F-r) :call snipe#core#DoReplace('F')<CR>
+nnoremap <script> <Plug>(snipe-f-i) :call snipe#core#DoInsert('f')<CR>
+nnoremap <script> <Plug>(snipe-F-i) :call snipe#core#DoInsert('F')<CR>
+nnoremap <script> <Plug>(snipe-f-a) :call snipe#core#DoAppend('f')<CR>
+nnoremap <script> <Plug>(snipe-F-a) :call snipe#core#DoAppend('F')<CR>
 
 call snipe#highlight#InitializeHLGroups()
 

@@ -174,7 +174,7 @@ function! s:GetJumpCol(jump_tree) " {{{
   let modified = &modified
   call s:SafeSetLine(lnum, hl_line)
 
-  let ord_pressed = s:GetInput('Enter target: ')
+  let ord_pressed = s:GetInput('Enter key: ')
   let key_pressed = nr2char(ord_pressed)
 
   for hl_id in hl_ids | call matchdelete(hl_id) | endfor
@@ -201,7 +201,7 @@ endfunction
 function! snipe#core#DoCharMotion(motion, mode) " {{{
   " returns 1 if the motion was successful, 0 in case
   " there was nowhere to jump to or the jump was cancelled
-  let ord = s:GetInput( 'Enter target character: ')
+  let ord = s:GetInput( 'Enter target: ')
   if ord == s:esc_ord | return 0 | endif
   let hits = s:GetCharHits(a:motion, nr2char(ord))
   if len(hits) == 0
@@ -306,11 +306,39 @@ function! snipe#core#DoReplace(motion) " {{{
     if !did_jump
       return
     endif
-    let ord = s:GetInput('Enter replacement: ')
+    let ord = s:GetInput('Replace with: ')
     if ord == s:esc_ord | return | endif
     silent execute 'normal! r' . nr2char(ord)
   endfunction
   call DoAndGoBack(function('DoReplace', [a:motion]))
+endfunction
+" }}}
+
+function! snipe#core#DoInsert(motion) " {{{
+  function! DoInsert(...)
+    let did_jump = snipe#core#DoCharMotion(a:1, '')
+    if !did_jump
+      return
+    endif
+    let ord = s:GetInput('Insert character: ')
+    if ord == s:esc_ord | return | endif
+    silent execute 'normal! i' . nr2char(ord) . "\<esc>"
+  endfunction
+  call DoAndGoBack(function('DoInsert', [a:motion]))
+endfunction
+" }}}
+
+function! snipe#core#DoAppend(motion) " {{{
+  function! DoAppend(...)
+    let did_jump = snipe#core#DoCharMotion(a:1, '')
+    if !did_jump
+      return
+    endif
+    let ord = s:GetInput('Append character: ')
+    if ord == s:esc_ord | return | endif
+    silent execute 'normal! a' . nr2char(ord) . "\<esc>"
+  endfunction
+  call DoAndGoBack(function('DoAppend', [a:motion]))
 endfunction
 " }}}
 

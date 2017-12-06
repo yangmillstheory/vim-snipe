@@ -195,8 +195,8 @@ EDITING                                                *snipe-editing*
 
 Use in Normal mode.
 
-|snipe-f-xp|    |snipe-f-x|    |snipe-f-r|
-|snipe-F-xp|    |snipe-F-x|    |snipe-F-r|
+|snipe-f-xp|    |snipe-f-x|    |snipe-f-r|      |snipe-f-i|     |snipe-f-a|
+|snipe-F-xp|    |snipe-F-x|    |snipe-F-r|      |snipe-F-i|     |snipe-F-a|
 
 Example mappings provided below.
 
@@ -241,6 +241,33 @@ Replace a token ahead of the cursor.
 Replace a token behind the cursor.
 >
   map <leader><leader>R <Plug>(snipe-F-r)
+
+--------------------------------------------------------------------
+*snipe-f-i*
+
+Insert a token ahead of the cursor.
+>
+  map <leader><leader>i <Plug>(snipe-f-i)
+
+--------------------------------------------------------------------
+*snipe-F-i*
+
+Insert a token behind the cursor.
+>
+  map <leader><leader>I <Plug>(snipe-F-i)
+--------------------------------------------------------------------
+*snipe-f-a*
+
+Append a token ahead of the cursor.
+>
+  map <leader><leader>a <Plug>(snipe-f-a)
+
+--------------------------------------------------------------------
+*snipe-F-a*
+
+Append a token behind the cursor.
+>
+  map <leader><leader>A <Plug>(snipe-F-a)
 
 ====================================================================
 LICENSE                                                *snipe-license*

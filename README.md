@@ -66,6 +66,17 @@ nmap <leader><leader>R <Plug>(snipe-F-r)
 
 ![r](https://user-images.githubusercontent.com/2729079/33586877-69c799a2-d920-11e7-8286-55470dbbdb3c.gif)
 
+#### Append
+
+Fix "missig" by appending an "n" after the second "i".
+
+```vim
+nmap <leader><leader>a <Plug>(snipe-f-a)
+nmap <leader><leader>A <Plug>(snipe-F-a)
+```
+
+![a](https://user-images.githubusercontent.com/2729079/33675549-c8758994-da67-11e7-8538-99d2d58d1804.gif)
+
 ### Options
 
 By default, the jump tokens are row-ordered starting with the home row: `asdfghjklqwertyuiopzxcvbnm`. You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
