@@ -9,17 +9,7 @@
 
 [Read this for motivation.](https://blog.yangmillstheory.com/posts/vim-snipe#motivation)
 
-### Installing
-
-If you use a plugin manager this is as simple as
-
-```vim
-Plug 'yangmillstheory/vim-snipe'
-```
-
-The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak accordingly for your plugin manager.
-
-### Usage and examples
+### Examples
 
 The plugin API is exposed via "named key sequences"; see [this write-up](http://whileimautomaton.net/2008/09/27022735) on why this is a good idea.
 
