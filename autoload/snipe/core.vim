@@ -75,7 +75,7 @@ function! s:GetJumpTree(hits) " {{{
   " (tuples) of hits.
   "
   " each level of the tree is filled such that the average path depth of the tree
-  " is minimized and the closest hits come first first.
+  " is minimized and the closest hits come first.
   let tree = {}
 
   " i: index into hits
