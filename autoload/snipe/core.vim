@@ -6,7 +6,7 @@ let loaded_snipe = 1
 " }}}
 
 " private variables {{{
-let s:known_modes = {'no': 1, 'v': 1, '': 1}
+let s:known_modes = {'no ': 1, 'v ': 1, ' ': 1}
 let s:esc_ord = 27
 let s:cr_ord = 13
 let s:forward_motions = {
@@ -59,7 +59,7 @@ function! s:GetJumpDict(jump_tree, ...) " {{{
 
   for [jump_key, node] in items(a:jump_tree)
     let next_key = prev_key . jump_key
-    if type(node) == v:t_number
+    if type(node) == type(0)
       let dict[next_key] = node
     else
       call extend(dict, s:GetJumpDict(node, next_key))
@@ -191,7 +191,7 @@ function! s:GetJumpCol(jump_tree) " {{{
 
   let node = a:jump_tree[key_pressed]
 
-  if type(node) == v:t_number
+  if type(node) == type(0)
     return node
   endif
   return s:GetJumpCol(node)
@@ -244,7 +244,7 @@ endfunction
 " }}}
 
 function! snipe#core#DoWordMotion(motion, mode) " {{{
-  if !has_key(s:known_modes, a:mode)
+  if !has_key(s:known_modes, a:mode . ' ')
     return
   endif
   let hits = s:GetWordHits(a:motion)
