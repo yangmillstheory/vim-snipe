@@ -22,33 +22,33 @@ if !exists('g:snipe_jump_tokens')
 endif
 " }}}
 
-function! s:GetHitCounts(hits_rem) " {{{
+function! s:GetTargetCounts(targets_rem) " {{{
   " returns a list corresponding to g:snipe_jump_tokens; each
-  " count represents how many hits are in the subtree
+  " count represents how many targets are in the subtree
   " rooted at the corresponding jump token
   let n_jump_tokens = len(g:snipe_jump_tokens)
-  let n_hits = repeat([0], n_jump_tokens)
-  let hits_rem = a:hits_rem
+  let target_counts = repeat([0], n_jump_tokens)
+  let targets_rem = a:targets_rem
 
   let is_first_lvl = 1
-  while hits_rem > 0
-    " if we can't fit all the hits in the first lvl,
+  while targets_rem > 0
+    " if we can't fit all the targets in the first lvl,
     " fit the remainder starting from the last jump token
     let n_children = is_first_lvl
           \ ? 1
           \ : n_jump_tokens - 1
     for j in range(n_jump_tokens)
-      let n_hits[j] += n_children
-      let hits_rem -= n_children
-      if hits_rem <= 0
-        let n_hits[j] += hits_rem
+      let target_counts[j] += n_children
+      let targets_rem -= n_children
+      if targets_rem <= 0
+        let target_counts[j] += targets_rem
         break
       endif
     endfor
     let is_first_lvl = 0
   endwhile
 
-  return reverse(n_hits)
+  return reverse(target_counts)
 endfunction
 " }}}
 
@@ -70,24 +70,23 @@ function! s:GetJumpDict(jump_tree, ...) " {{{
 endfunction
 " }}}
 
-function! s:GetJumpTree(hits) " {{{
-  " returns a tree where non-leaf nodes are jump tokens and leaves are coordinates
-  " (tuples) of hits.
+function! s:GetJumpTree(targets) " {{{
+  " returns a tree where non-leaf nodes are jump tokens and leaves are column numbers
   "
   " each level of the tree is filled such that the average path depth of the tree
-  " is minimized and the closest hits come first.
+  " is minimized and the closest targets come first.
   let tree = {}
 
-  " i: index into hits
+  " i: index into targets
   " j: index into jump tokens
   let i = 0
   let j = 0
-  for n_children in s:GetHitCounts(len(a:hits))
+  for n_children in s:GetTargetCounts(len(a:targets))
     let node = g:snipe_jump_tokens[j]
     if n_children == 1
-      let tree[node] = a:hits[i]
+      let tree[node] = a:targets[i]
     elseif n_children > 1
-      let tree[node] = s:GetJumpTree(a:hits[i:i + n_children - 1])
+      let tree[node] = s:GetJumpTree(a:targets[i:i + n_children - 1])
     else
       continue
     endif
@@ -98,8 +97,8 @@ function! s:GetJumpTree(hits) " {{{
 endfunction
 " }}}
 
-function! s:GetCharHits(motion, target) " {{{
-  let hits = []
+function! s:GetCharTargets(motion, target) " {{{
+  let targets = []
 
   let start_lnum = line('.')
   let start_cnum = col('.')
@@ -120,13 +119,13 @@ function! s:GetCharHits(motion, target) " {{{
     if next_cnum == prev_cnum
       break
     else
-      call add(hits, next_cnum)
+      call add(targets, next_cnum)
     endif
     let [first_pass, prev_cnum] = [0, next_cnum]
   endwhile
 
   call cursor(start_lnum, start_cnum)
-  return hits
+  return targets
 endfunction
 """ }}}
 
@@ -203,18 +202,18 @@ function! snipe#core#DoCharMotion(motion, mode) " {{{
   " there was nowhere to jump to or the jump was cancelled
   let ord = s:GetInput( 'Enter target: ')
   if ord == s:esc_ord | return 0 | endif
-  let hits = s:GetCharHits(a:motion, nr2char(ord))
-  if len(hits) == 0
+  let targets = s:GetCharTargets(a:motion, nr2char(ord))
+  if len(targets) == 0
     return 0
   endif
-  let jump_tree = s:GetJumpTree(hits)
+  let jump_tree = s:GetJumpTree(targets)
   call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
   return 1
 endfunction
 " }}}
 
-function! s:GetWordHits(motion) " {{{
-  let hits = []
+function! s:GetWordTargets(motion) " {{{
+  let targets = []
   let orig_winview = winsaveview()
   let orig_curpos = getcurpos()
   if has_key(s:forward_motions, a:motion)
@@ -232,14 +231,14 @@ function! s:GetWordHits(motion) " {{{
     if lnum != orig_curpos[1]
       break
     endif
-    call add(hits, cnum)
+    call add(targets, cnum)
     if curpos[:-2] == endpos[:-2]
       break
     endif
   endwhile
   call setpos('.', orig_curpos)
   call winrestview(orig_winview)
-  return hits
+  return targets
 endfunction
 " }}}
 
@@ -247,11 +246,11 @@ function! snipe#core#DoWordMotion(motion, mode) " {{{
   if !has_key(s:known_modes, a:mode)
     return
   endif
-  let hits = s:GetWordHits(a:motion)
-  if len(hits) == 0
+  let targets = s:GetWordTargets(a:motion)
+  if len(targets) == 0
     return
   endif
-  let jump_tree = s:GetJumpTree(hits)
+  let jump_tree = s:GetJumpTree(targets)
   call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
 endfunction
 " }}}
