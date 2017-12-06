@@ -92,13 +92,13 @@ For the full documentation, do `:h snipe.txt`.
 
 > Why did you constrain to `line('.')`?
 
-There's no need to scan the whole buffer, given `set relativenumber`. Scanning the buffer is thus overkill and slow.
+Given `set relativenumber`, scanning the buffer is overkill and unnecessarily slow.
 
 > Should I always use this over the built-in motions?
 
-No, in some cases (i.e. a single hop to an adjacent word, or when the target is unique on the path to the cursor), it's probably faster to use the built-in motions.
+No, in some cases (i.e. a single hop to an adjacent word, or when the target is obviously unique on the path to the cursor), it's probably faster to use the built-in motions.
 
-Pick the right tool for the right job; I use the vim-snipe constantly, but I don't remap the built-in motions.
+Pick the right tool for the right job; I use vim-snipe constantly, but I don't remap the built-in motions.
 
 ### Inspirations
 
