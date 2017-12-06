@@ -1,22 +1,13 @@
 # vim-snipe
 
-> Fast linewise motions and edits
+> Targeted linewise motions and edits
 
 ![gif](https://media.giphy.com/media/UXzQDxF7TB1fO/giphy.gif)
 
-Provides
+1. Jump to a target on the same line with a single keystroke, no matter the distance
+2. Fix common typos using swaps, replacements, and cuts
 
-1. Extensions of `f`, `F`, `t`, `T`, `w`, `W`, `b`, `B` and friends to navigate with one keystroke and minimal cognitive load
-    * for example, instead of `fA;;;;`, `3T` or `5e`, you can [press a single highlighted key to reach your target](https://github.com/yangmillstheory/vim-snipe#character-motions), avoiding prefix counting
-2. Fast ways to fix common typos on the same line, using swaps (`xp`), replacements (`r`), and cuts (`x`)
-
-Read [Motivation](https://github.com/yangmillstheory/vim-snipe#motivation) and [FAQ](https://github.com/yangmillstheory/vim-snipe#faq) for background.
-
-Inspired by:
-
-* [tmux-fingers](https://github.com/Morantron/tmux-fingers)
-* [vimium](https://github.com/philc/vimium)
-* [vim-easymotion](https://github.com/easymotion/vim-easymotion/)
+[Read this for motivation.](https://blog.yangmillstheory.com/posts/vim-snipe#motivation)
 
 ### Installing
 
@@ -30,7 +21,9 @@ The above example uses [vim-plug](https://github.com/junegunn/vim-plug); tweak a
 
 ### Usage and examples
 
-The plugin API is exposed via "named key sequences"; see [this write-up](http://whileimautomaton.net/2008/09/27022735) on why this is a good idea. For more information, do `:h snipe.txt`.
+The plugin API is exposed via "named key sequences"; see [this write-up](http://whileimautomaton.net/2008/09/27022735) on why this is a good idea.
+
+For more information, do `:h snipe.txt`.
 
 #### Character motions
 
@@ -111,15 +104,17 @@ Example usage: Change the typo "smbll" to "small" by replacing an instance of "b
 
 ![r](https://user-images.githubusercontent.com/2729079/33586877-69c799a2-d920-11e7-8286-55470dbbdb3c.gif)
 
-### Configuration
+### Options
 
-By default, the jump tokens are ordered starting with the home row 'asdfghjkl', then 'qwertyuiop', then 'zxcvbnm'. You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
+By default, the jump tokens are ordered starting with the home row `asdfghjkl`, then `qwertyuiop`, then `zxcvbnm`.
+
+You can provide your own sequence by setting a global variable `g:snipe_jump_tokens`. For Dvorak users, e.g.
 
 ```vim
 let g:snipe_jump_tokens = 'aoeuidhtns'
 ```
 
-You can also provide your own highlighting via 
+You can also provide your own highlighting via
 
 ```vim
 let g:snipe_highlight_gui_color = '#fabd2f'
@@ -129,48 +124,23 @@ let g:snipe_highlight_cterm_color = 7'
 
 These are used to build the highlighting group in [highlight.vim](https://github.com/yangmillstheory/vim-snipe/blob/master/autoload/snipe/highlight.vim) used when highlighting a jump.
 
-### Motivation
-
-**1. Automate fixing typos on the same line.**
-
-I make mistakes often enough to make this worth automating - in fact, I made a few mistakes while writing this line.
-
-**2. No more `;` and `,` repetition when using linewise motions.**
-
-I almost always know exactly where I want to go, but I'm forced to navigate incrementally to that place, or manually count the prefix of the motion (i.e. `5e`). Other times, I want to jump somewhere far in one direction, and it's more efficient to see the possible jump markers, instead of manually exploring (`wwwww`).
-
-**3. There aren't any plugins containing or focused on the same feature set.**
-
-The two plugins with the most overlap in functionality are
-
-* [Stupid-EasyMotion](https://github.com/joequery/Stupid-EasyMotion)
-* [vim-easymotion](https://github.com/easymotion/vim-easymotion)
-
-Stupid-Easymotion constrains motions to `line('.')`, but it only provides mappings for `f`, `w`, and `W`. It also hasn't seen any activity in a long time - 4+ years at the time of this writing.
-
-[vim-easymotion has a similarly incomplete API](https://github.com/easymotion/vim-easymotion/issues/354). It's also
-[sprawling](https://www.reddit.com/r/vim/comments/1v9qyu/actively_developed_and_maintained_fork_of/ceq7lcf/), and (IMHO)
-painful to extend.
-
-However, I'd like to give credit to vim-easymotion, having borrowed some core functionality and logic:
-
-* highlighting initialization
-* clever algorithm for building the jump tree
-
-
 ### FAQ
 
 > Why did you constrain to `line('.')`?
 
-There's no need to scan the whole buffer, given `set relativenumber`. Thus, this approach is more performant and IMHO more natural.
+There's no need to scan the whole buffer, given `set relativenumber`. Scanning the buffer is thus overkill, not to mention inefficient and slow.
 
-> But I've been getting by just fine without this!
+> Should I always use this over the built-in motions?
 
-Cool, then you shouldn't use it. I use it everyday, so it serves me well, and hopefully I'm not the only one.
+No, in some cases (i.e. a single hop to an adjacent word, or when the destination character is unique on the path to the cursor), it's probably faster to use `f`, `F`, `t`, `T`, etc.
 
-> Should I always use the mappings?
+Pick the right tool for the right job, I'd say, and don't remap the built-in motions.
 
-No, in some cases (i.e. a single hop to an adjacent word, or when the destination character is unique on the path to the cursor), it's probably faster to use `f`, `F`, `t`, `T`, etc. Pick the right tool for the right job, I'd say.
+### Inspired by
+
+* [tmux-fingers](https://github.com/Morantron/tmux-fingers)
+* [vimium](https://github.com/philc/vimium)
+* [vim-easymotion](https://github.com/easymotion/vim-easymotion/)
 
 ### Contributing
 

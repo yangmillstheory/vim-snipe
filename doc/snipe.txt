@@ -41,7 +41,7 @@ fact, I made a few mistakes while writing this line.
 
 --------------------------------------------------------------------
 
-For more, see https://github.com/yangmillstheory/vim-snipe#motivation
+For more, see https://blog.yangmillstheory.com/posts/vim-snipe#motivation.
 
 ====================================================================
 USAGE                                                    *snipe-usage*
