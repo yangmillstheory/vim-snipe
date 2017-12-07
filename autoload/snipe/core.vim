@@ -140,7 +140,6 @@ endfunction
 function! s:GetInput(message) " {{{
   echo a:message
   let ord = getchar()
-  normal :<c-u>
   return ord
 endfunction
 " }}}
