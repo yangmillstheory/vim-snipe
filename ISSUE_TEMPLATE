@@ -1,0 +1,17 @@
+### Summary
+
+Describe the problem. What is the expected and actual result?
+
+### Mappings
+
+Paste your vim-snipe mappings here, for example:
+
+```vim
+nnoremap <leader><leader>f <plug>(snipe-f-f)
+```
+
+### Steps to reproduce
+
+* [ ] Step 1
+* [ ] Step 2
+* [ ] Step 3
