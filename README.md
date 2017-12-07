@@ -111,7 +111,7 @@ No, in some cases (i.e. a single hop to an adjacent word, or when the target is 
 
 Pick the right tool for the right job; I use vim-snipe constantly, but I don't remap the built-in motions.
 
-### Inspirations
+### Inspiration
 
 * [tmux-fingers](https://github.com/Morantron/tmux-fingers)
 * [vimium](https://github.com/philc/vimium)
