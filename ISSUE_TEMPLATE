@@ -1,16 +1,39 @@
 ### Summary
 
-Describe the problem. What is the expected and actual result?
+Describe the problem. What was the **action**, **expected result**, and **actual result**?
 
 ### Mappings
 
-Paste your vim-snipe mappings here, for example:
+Paste all your vim-snipe mappings here, for example:
 
 ```vim
-nnoremap <leader><leader>f <plug>(snipe-f-f)
+map <leader><leader>F <Plug>(snipe-F)
+map <leader><leader>f <Plug>(snipe-f)
+map <leader><leader>T <Plug>(snipe-T)
+map <leader><leader>t <Plug>(snipe-t)
+map <leader><leader>w <Plug>(snipe-w)
+map <leader><leader>W <Plug>(snipe-W)
+map <leader><leader>e <Plug>(snipe-e)
+map <leader><leader>E <Plug>(snipe-E)
+map <leader><leader>b <Plug>(snipe-b)
+map <leader><leader>B <Plug>(snipe-B)
+map <leader><leader>ge <Plug>(snipe-ge)
+map <leader><leader>gE <Plug>(snipe-gE)
+nmap <leader><leader>] <Plug>(snipe-f-xp)
+nmap <leader><leader>[ <Plug>(snipe-F-xp)
+nmap <leader><leader>x <Plug>(snipe-f-x)
+nmap <leader><leader>X <Plug>(snipe-F-x)
+nmap <leader><leader>r <Plug>(snipe-f-r)
+nmap <leader><leader>R <Plug>(snipe-F-r)
+nmap <leader><leader>i <Plug>(snipe-f-i)
+nmap <leader><leader>I <Plug>(snipe-F-i)
+nmap <leader><leader>a <Plug>(snipe-f-a)
+nmap <leader><leader>A <Plug>(snipe-F-a)
 ```
 
 ### Steps to reproduce
+
+Please provide the 
 
 * [ ] Step 1
 * [ ] Step 2
