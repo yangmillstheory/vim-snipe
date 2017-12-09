@@ -99,7 +99,6 @@ endfunction
 
 function! s:GetCharTargets(motion, target) " {{{
   let targets = []
-  let is_until = a:motion ==? 't'
 
   let start_lnum = line('.')
   let start_cnum = col('.')
@@ -118,7 +117,7 @@ function! s:GetCharTargets(motion, target) " {{{
     execute 'keepjumps normal! ' . cmd
     let next_cnum = col('.')
     if next_cnum == prev_cnum
-      if is_until && first_pass
+      if a:motion ==? 't' && first_pass
         " prevent the the loop from exiting early and provide correction;
         " look ahead one token since the each iteration executes a motion
         let [dir_key_start, delta, dir_key_end] = a:motion ==# 't'
