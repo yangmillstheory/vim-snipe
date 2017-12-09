@@ -119,7 +119,7 @@ function! s:GetCharTargets(motion, target) " {{{
     let next_cnum = col('.')
     if next_cnum == prev_cnum
       if is_until && first_pass
-        " prevent the the loop from exiting early and provide correction
+        " prevent the the loop from exiting early and provide correction;
         " look ahead one token since the each iteration executes a motion
         let [dir_key_start, delta, dir_key_end] = a:motion ==# 't'
               \ ? ['l', +1, 'h']
