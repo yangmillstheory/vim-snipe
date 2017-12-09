@@ -118,11 +118,15 @@ function! s:GetCharTargets(motion, target) " {{{
     let next_cnum = col('.')
     if next_cnum == prev_cnum
       if a:motion ==? 't' && first_pass
-        " prevent the the loop from exiting early and provide correction;
-        " look ahead one token since the each iteration executes a motion
+        " prevent the the loop from exiting early and provide correction
         let [dir_key_start, delta, dir_key_end] = a:motion ==# 't'
               \ ? ['l', +1, 'h']
               \ : ['h', -1, 'l']
+        " look ahead one token since the next iteration will
+        "
+        "   execute 'normal! ;'
+        "
+        " thus potentially missing the first target
         let saved = @@
         execute 'normal! 2' . dir_key_start . 'vy' . dir_key_end
         if @@ ==# a:target
@@ -356,3 +360,4 @@ endfunction
 " }}}
 
 " vim: fdm=marker
+
