@@ -99,6 +99,7 @@ endfunction
 
 function! s:GetCharTargets(motion, target) " {{{
   let targets = []
+  let is_until = a:motion ==? 't'
 
   let start_lnum = line('.')
   let start_cnum = col('.')
@@ -117,7 +118,11 @@ function! s:GetCharTargets(motion, target) " {{{
     execute 'keepjumps normal! ' . cmd
     let next_cnum = col('.')
     if next_cnum == prev_cnum
-      break
+      if is_until && first_pass
+        normal l
+      else
+        break
+      endif
     else
       call add(targets, next_cnum)
     endif
