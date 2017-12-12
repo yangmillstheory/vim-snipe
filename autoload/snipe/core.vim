@@ -218,7 +218,7 @@ endfunction
 function! snipe#core#DoCharMotion(motion, mode) " {{{
   " returns 1 if the motion was successful, 0 in case
   " there was nowhere to jump to or the jump was cancelled
-  let ord = s:GetInput( 'Enter target: ')
+  let ord = s:GetInput('Enter target: ')
   if ord == s:esc_ord | return 0 | endif
   let targets = s:GetCharTargets(a:motion, nr2char(ord))
   if len(targets) == 0
