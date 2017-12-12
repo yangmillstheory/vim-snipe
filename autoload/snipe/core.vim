@@ -225,7 +225,11 @@ function! snipe#core#DoCharMotion(motion, mode) " {{{
     return 0
   endif
   let jump_tree = s:GetJumpTree(targets)
-  call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
+  let jump_col = s:GetJumpCol(jump_tree)
+  if !jump_col
+    return 0
+  endif
+  call <SID>Jump(jump_col, a:mode)
   return 1
 endfunction
 " }}}
@@ -269,7 +273,11 @@ function! snipe#core#DoWordMotion(motion, mode) " {{{
     return
   endif
   let jump_tree = s:GetJumpTree(targets)
-  call <SID>Jump(s:GetJumpCol(jump_tree), a:mode)
+  let jump_col = s:GetJumpCol(jump_tree)
+  if !jump_col
+    return
+  endif
+  call <SID>Jump(jump_col, a:mode)
 endfunction
 " }}}
 
