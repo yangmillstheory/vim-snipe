@@ -153,6 +153,38 @@ function! s:SafeSetLine(lnum, line) " {{{
   call setline(a:lnum, a:line)
   redraw
 endfunction
+
+let s:buf = 0
+function! s:OpenFlagWindow(lnum, line, jump_items)
+  let hl_line = a:line
+
+  let winid = win_getid()
+  let winpos = win_screenpos(winid)
+  let pos = screenpos(winid, a:lnum, 1)
+  let pos2 = screenpos(winid, a:lnum, len(hl_line))
+  let opt = {'focusable': v:false,
+        \ 'relative': 'editor',
+        \ 'row': pos.row-1,
+        \ 'col': pos.col-1,
+        \ 'width': winwidth(0) - (pos.col - winpos[1]),
+        \ 'height': pos2.row - pos.row + 1,
+        \ 'style': 'minimal'}
+  if empty(s:buf) || !bufexists(s:buf)
+    let s:buf = nvim_create_buf(0, 1)
+    call nvim_buf_set_option(s:buf, 'syntax', 'off')
+  endif
+  let winid = nvim_open_win(s:buf, 0, opt)
+
+  let hl_ids = []
+  for [jump_seq, jump_col] in a:jump_items
+    " this loop builds the highlighted line, adding highlights from left to right;
+    " multi-token jump sequences will only show the first token.
+    let hl_line = substitute(hl_line, '\%' . jump_col . 'c.', jump_seq[0], '')
+    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[1, jump_col]], 10, -1, {'window': winid}))
+  endfor
+  call nvim_buf_set_lines(s:buf, 0, -1, 0, [hl_line])
+  return winid
+endfunction
 " }}}
 
 function! s:GetInput(message) " {{{
@@ -181,23 +213,32 @@ function! s:GetJumpCol(jump_tree) " {{{
 
   let jump_items = items(jump_dict)
   call sort(jump_items, 'SortAscByJumpCol')
-  for [jump_seq, jump_col] in jump_items
-    " this loop builds the highlighted line, adding highlights from left to right;
-    " multi-token jump sequences will only show the first token.
-    let hl_line = substitute(hl_line, '\%' . jump_col . 'c.', jump_seq[0], '')
-    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[lnum, jump_col]]))
-  endfor
 
-  let modified = &modified
-  call s:SafeSetLine(lnum, hl_line)
+  if !get(g:, 'snipe_float_window', exists('*nvim_open_win'))
+    for [jump_seq, jump_col] in jump_items
+      " this loop builds the highlighted line, adding highlights from left to right;
+      " multi-token jump sequences will only show the first token.
+      let hl_line = substitute(hl_line, '\%' . jump_col . 'c.', jump_seq[0], '')
+      call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[1, jump_col]]))
+    endfor
+
+    let modified = &modified
+    call s:SafeSetLine(lnum, hl_line)
+  else
+    let win = s:OpenFlagWindow(lnum, hl_line, jump_items)
+  endif
 
   let ord_pressed = s:GetInput('Enter key: ')
   let key_pressed = nr2char(ord_pressed)
 
   for hl_id in hl_ids | call matchdelete(hl_id) | endfor
-  call s:SafeSetLine(lnum, orig_line)
-  if !modified
-    set nomodified
+  if !get(g:, 'snipe_float_window', exists('*nvim_open_win'))
+    call s:SafeSetLine(lnum, orig_line)
+    if !modified
+      set nomodified
+    endif
+  else
+    call nvim_win_close(win, 1)
   endif
 
   if ord_pressed == s:esc_ord || key_pressed ==# nr2char(s:cr_ord)
