@@ -178,8 +178,8 @@ function! s:OpenFlagWindow(lnum, line, jump_items)
   if empty(s:buf) || !bufexists(s:buf)
     let s:buf = nvim_create_buf(0, 1)
     call nvim_buf_set_option(s:buf, 'syntax', 'off')
-    call nvim_buf_set_option(s:buf, 'tabstop', &tabstop)
   endif
+  call nvim_buf_set_option(s:buf, 'tabstop', &tabstop)
   let floatwinid = nvim_open_win(s:buf, 0, opt)
 
   let hl_ids = []
