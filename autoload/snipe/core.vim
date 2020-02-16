@@ -162,28 +162,35 @@ function! s:OpenFlagWindow(lnum, line, jump_items)
   let winpos = win_screenpos(winid)
   let pos = screenpos(winid, a:lnum, 1)
   let pos2 = screenpos(winid, a:lnum, len(hl_line))
-  let opt = {'focusable': v:false,
-        \ 'relative': 'editor',
-        \ 'row': pos.row-1,
-        \ 'col': pos.col-1,
-        \ 'width': winwidth(0) - (pos.col - winpos[1]),
-        \ 'height': pos2.row - pos.row + 1,
-        \ 'style': 'minimal'}
+  if pos.col > 0
+    let height = pos2.col > 0 ? pos2.row - pos.row + 1 : 1
+    let opt = {'focusable': v:false,
+          \ 'relative': 'editor',
+          \ 'row': pos.row-1,
+          \ 'col': pos.col-1,
+          \ 'width': winwidth(0) - (pos.col - winpos[1]),
+          \ 'height': height,
+          \ 'style': 'minimal'}
+  else
+    return 0
+  endif
+  " echomsg string(opt)
   if empty(s:buf) || !bufexists(s:buf)
     let s:buf = nvim_create_buf(0, 1)
     call nvim_buf_set_option(s:buf, 'syntax', 'off')
+    call nvim_buf_set_option(s:buf, 'tabstop', &tabstop)
   endif
-  let winid = nvim_open_win(s:buf, 0, opt)
+  let floatwinid = nvim_open_win(s:buf, 0, opt)
 
   let hl_ids = []
   for [jump_seq, jump_col] in a:jump_items
     " this loop builds the highlighted line, adding highlights from left to right;
     " multi-token jump sequences will only show the first token.
     let hl_line = substitute(hl_line, '\%' . jump_col . 'c.', jump_seq[0], '')
-    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[1, jump_col]], 10, -1, {'window': winid}))
+    call add(hl_ids, matchaddpos(g:snipe_hl1_group, [[1, jump_col]], 10, -1, {'window': floatwinid}))
   endfor
   call nvim_buf_set_lines(s:buf, 0, -1, 0, [hl_line])
-  return winid
+  return floatwinid
 endfunction
 " }}}
 
