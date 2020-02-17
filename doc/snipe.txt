@@ -70,6 +70,14 @@ Dvorak users, e.g.
 >
     let g:snipe_jump_tokens = 'aoeuidhtns'
 <
+
+                                               *g:snipe_float_window*
+By default, if |nvim_open_win| is detected, the neovim floating window
+will be used to display the jump tokens. You can disable this feature
+by setting a global variable, e.g.
+>
+    let g:snipe_float_window = 0
+<
 --------------------------------------------------------------------
                                          *g:snipe_highlight_gui_color*
                                     *g:snipe_highlight_cterm256_color*
