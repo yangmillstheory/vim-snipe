@@ -230,11 +230,11 @@ Cut a token ahead of the cursor into the Black hole register.
   map <leader><leader>x <Plug>(snipe-f-x)
 
 --------------------------------------------------------------------
-*snipe-f-X*
+*snipe-F-x*
 
 Cut a token behind the cursor into the Black hole register.
 >
-  map <leader><leader>X <Plug>(snipe-f-X)
+  map <leader><leader>X <Plug>(snipe-F-x)
 
 --------------------------------------------------------------------
 *snipe-f-r*
