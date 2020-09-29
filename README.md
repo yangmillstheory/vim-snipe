@@ -4,6 +4,8 @@
 
 ![gif](https://media.giphy.com/media/UXzQDxF7TB1fO/giphy.gif)
 
+### Features
+
 1. Jump to a character on the same line with a single keystroke, no matter the distance
 2. Fix common typos via insertion, swap, replace, and cut
 
