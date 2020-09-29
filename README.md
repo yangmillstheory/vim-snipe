@@ -1,11 +1,11 @@
 # vim-snipe
 
-> Targeted linewise motions and edits
+>Linewise motions and edits
 
 ![gif](https://media.giphy.com/media/UXzQDxF7TB1fO/giphy.gif)
 
-1. Jump to a target on the same line with a single keystroke, no matter the distance
-2. Quickly fix common typos using insertion, swap, replace, and cut
+1. Jump to a character on the same line with a single keystroke, no matter the distance
+2. Fix common typos via insertion, swap, replace, and cut
 
 [Read this for background and motivation.](https://blog.yangmillstheory.com/posts/vim-snipe)
 
@@ -109,7 +109,7 @@ Given `set relativenumber`, scanning the buffer is overkill and unnecessarily sl
 
 No, in some cases (i.e. a single hop to an adjacent word, or when the target is obviously unique on the path to the cursor), it's probably faster to use the built-in motions.
 
-Pick the right tool for the right job; I use vim-snipe constantly, but I don't remap the built-in motions.
+Pick the right tool for the right job; I use `vim-snipe` constantly, but I don't remap the built-in motions.
 
 ### Inspiration
 
