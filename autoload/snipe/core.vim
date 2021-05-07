@@ -366,7 +366,7 @@ function! snipe#core#DoCut(motion) " {{{
   function! DoCut(...)
     let did_jump = snipe#core#DoCharMotion(a:1, '')
     if did_jump
-      normal "_x
+      normal! "_x
     endif
   endfunction
   call DoAndGoBack(function('DoCut', [a:motion]))
