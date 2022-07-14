@@ -92,7 +92,7 @@ You can also provide your own highlighting via
 ```vim
 let g:snipe_highlight_gui_color = '#fabd2f'
 let g:snipe_highlight_cterm256_color = '200'
-let g:snipe_highlight_cterm_color = 7'
+let g:snipe_highlight_cterm_color = '7'
 ```
 
 These are used to build the highlighting group in [highlight.vim](https://github.com/yangmillstheory/vim-snipe/blob/master/autoload/snipe/highlight.vim) used when highlighting a jump sequence.
