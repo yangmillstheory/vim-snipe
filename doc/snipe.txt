@@ -72,11 +72,21 @@ Dvorak users, e.g.
 <
 
                                                *g:snipe_float_window*
+
 By default, if |nvim_open_win| is detected, the neovim floating window
 will be used to display the jump tokens. You can disable this feature
 by setting a global variable, e.g.
 >
     let g:snipe_float_window = 0
+
+<
+                                                     *g:snipe_silent*
+
+Suppress plugin prompts and echo messages by default. Useful if you
+set |cmdheight| to 0 and don't want to see an annoying confirmation
+prompt.
+>
+    let g:snipe_silent = 0
 <
 --------------------------------------------------------------------
                                          *g:snipe_highlight_gui_color*

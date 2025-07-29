@@ -5,6 +5,10 @@ endif
 let loaded_snipe = 1
 " }}}
 
+if !exists('g:snipe_silent')
+  let g:snipe_silent = 0
+endif
+
 " private variables {{{
 let s:known_modes = {'no': 1, 'v': 1, '': 1}
 let s:esc_ord = 27
@@ -174,7 +178,6 @@ function! s:OpenFlagWindow(lnum, line, jump_items)
   else
     return 0
   endif
-  " echomsg string(opt)
   if empty(s:buf) || !bufexists(s:buf)
     let s:buf = nvim_create_buf(0, 1)
     call nvim_buf_set_option(s:buf, 'syntax', 'off')
@@ -195,7 +198,10 @@ endfunction
 " }}}
 
 function! s:GetInput(message) " {{{
-  redraw | echo a:message
+  redraw
+  if !g:snipe_silent
+    echo a:message
+  endif
   let ord = getchar()
   normal! :<c-u>
   return ord
@@ -249,9 +255,17 @@ function! s:GetJumpCol(jump_tree) " {{{
   endif
 
   if ord_pressed == s:esc_ord || key_pressed ==# nr2char(s:cr_ord)
-    redraw | echom 'Jump cancelled.' | return
+    redraw
+    if !g:snipe_silent
+      echom 'Jump cancelled.'
+    endif
+    return
   elseif !has_key(a:jump_tree, key_pressed)
-    redraw | echom 'Invalid key: ' . key_pressed | return
+    redraw
+    if !g:snipe_silent
+      echom 'Invalid key: ' . key_pressed
+    endif
+    return
   endif
 
   let node = a:jump_tree[key_pressed]
